@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Brains Growth — Front-end
+
+Front-end application for Brains Growth built with Next.js, TypeScript, and Tailwind CSS.
+
+## Stack
+
+- **Framework**: Next.js 16+ (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **CMS**: Strapi (Headless, external API)
+- **Formatting**: Prettier
+- **Version Control**: Git + GitHub
+- **Deployment**: Digital Ocean
+
+## Project Structure
+
+```
+/app
+  /components    # Reusable components
+  /sections      # Page sections/landing page sections
+  /ui            # UI primitives (buttons, inputs, etc.)
+  /lib           # Utility functions and helpers
+  /styles        # Global styles (minimal, Tailwind-focused)
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ installed
+- npm or yarn package manager
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install dependencies
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Start development server
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Learn More
+### Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Create production build
+npm run build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Start production server
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Linting
 
-## Deploy on Vercel
+```bash
+# Run ESLint
+npm run lint
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Formatting
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Format code with Prettier (if script is added)
+npx prettier --write .
+```
+
+## Project Conventions
+
+- **Components**: One component per file, explicit props typing (no `any`)
+- **Styling**: Tailwind CSS only, avoid inline styles
+- **State**: No global state management unless explicitly needed
+- **Data Fetching**: Native `fetch`, prefer server components
+- **File Naming**: kebab-case for files, PascalCase for React components
+
+## Strapi Integration
+
+This front-end consumes Strapi as an external headless CMS via REST or GraphQL API. Business logic remains minimal and presentation-focused.
