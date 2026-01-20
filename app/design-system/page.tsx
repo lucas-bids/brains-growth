@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Inter, Inter_Tight } from "next/font/google";
 
 const inter = Inter({
@@ -139,9 +142,28 @@ function Badge({
 }
 
 export default function DesignSystemPage() {
+  // Theme state: dark is the default to match current behavior
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  // On mount: read saved preference from localStorage (if any)
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") {
+      setTheme(saved);
+    }
+    // If no preference exists, dark is already the default
+  }, []);
+
+  // Toggle between dark and light, persist to localStorage
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    localStorage.setItem("theme", next);
+  };
+
   return (
     <div
-      data-theme="dark"
+      data-theme={theme}
       className={`${inter.variable} ${interTight.variable} min-h-dvh bg-bg text-text antialiased`}
     >
       <header className="sticky top-0 z-10 border-b border-divider bg-bg/70 backdrop-blur">
@@ -176,6 +198,14 @@ export default function DesignSystemPage() {
             >
               Join
             </a>
+            {/* Theme toggle: shows the target mode (what clicking will switch to) */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="rounded-full bg-surface-2 px-3 py-1.5 text-sm font-medium text-text-secondary transition hover:text-text"
+            >
+              {theme === "dark" ? "Light" : "Dark"}
+            </button>
           </div>
         </div>
       </header>
@@ -984,7 +1014,7 @@ export default function DesignSystemPage() {
                       <p className="text-xs font-semibold text-text-secondary">
                         Correct
                       </p>
-                      <div className="mt-4 rounded-2xl border border-border bg-bg p-6">
+                      <div className="mt-4 rounded-xl border border-border bg-bg p-6">
                         <p className="text-small font-semibold text-text">
                           One radius language
                         </p>
