@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Inter, Inter_Tight } from "next/font/google";
 
 const inter = Inter({
@@ -171,10 +172,17 @@ export default function DesignSystemPage() {
           {/* Full-width pill nav: logo left | links + toggle right */}
           <nav
             aria-label="Primary"
-            className="flex w-full items-center justify-between rounded-full p-6 bg-surface/50 backdrop-blur-md"
+            className="flex w-full items-center justify-between rounded-full p-4 bg-surface/50 backdrop-blur-md"
           >
-            {/* Logo placeholder */}
-            <span className="text-sm font-semibold text-text">Brains Growth</span>
+            {/* Logo */}
+            <Image
+              src="/images/logo-green.png"
+              alt="Brains Coworking"
+              width={160}
+              height={40}
+              className="h-10 w-auto"
+              priority
+            />
 
             {/* Nav links + toggle grouped on the right */}
             <div className="flex items-center gap-6">
