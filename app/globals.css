@@ -1,6 +1,122 @@
 @import "tailwindcss";
 
-/* Design tokens will be added here as needed */
+/*
+  Design tokens
+  - Tailwind v4 (CSS-first): tokens are defined via CSS variables and exposed
+    to utilities via `@theme`.
+  - Default theme stays neutral/light. Dark-first surfaces are enabled by
+    scoping `[data-theme="dark"]` (used by `/design-system`).
+*/
+
+:root {
+  /* Base (light) */
+  --ds-bg: #f6f4f1;
+  --ds-surface: #ffffff;
+  --ds-surface-2: #f1eeea;
+
+  --ds-text: #141210;
+  --ds-text-secondary: #3a332e;
+  --ds-text-muted: #6a625c;
+
+  --ds-border: rgba(20, 18, 16, 0.12);
+  --ds-divider: rgba(20, 18, 16, 0.08);
+
+  /* Light surfaces within dark pages (for demos) */
+  --ds-paper: #f3f2f0;
+  --ds-paper-2: #ffffff;
+  --ds-ink: #141210;
+  --ds-ink-muted: #5d5550;
+  --ds-paper-border: rgba(20, 18, 16, 0.12);
+
+  /* Accents */
+  --ds-accent: #a6ff2e; /* lime */
+  --ds-accent-2: #6a4cff; /* purple */
+  --ds-accent-foreground: #0b0b0a;
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --ds-bg: #0f0e0d;
+  --ds-surface: #171514;
+  --ds-surface-2: #1f1c1a;
+
+  --ds-text: #f5f3f0;
+  --ds-text-secondary: rgba(245, 243, 240, 0.78);
+  --ds-text-muted: rgba(245, 243, 240, 0.58);
+
+  --ds-border: rgba(245, 243, 240, 0.12);
+  --ds-divider: rgba(245, 243, 240, 0.08);
+
+  /* Keep paper surfaces stable for contrast demos */
+  --ds-paper: #f3f2f0;
+  --ds-paper-2: #ffffff;
+  --ds-ink: #141210;
+  --ds-ink-muted: #5d5550;
+  --ds-paper-border: rgba(20, 18, 16, 0.12);
+
+  color-scheme: dark;
+}
+
 @theme inline {
-  /* Custom colors, spacing, fonts can be defined here */
+  /* Colors (semantic) */
+  --color-bg: var(--ds-bg);
+  --color-surface: var(--ds-surface);
+  --color-surface-2: var(--ds-surface-2);
+  --color-text: var(--ds-text);
+  --color-text-secondary: var(--ds-text-secondary);
+  --color-text-muted: var(--ds-text-muted);
+  --color-border: var(--ds-border);
+  --color-divider: var(--ds-divider);
+
+  /* Light (paper) surfaces for contrast demos */
+  --color-paper: var(--ds-paper);
+  --color-paper-2: var(--ds-paper-2);
+  --color-ink: var(--ds-ink);
+  --color-ink-muted: var(--ds-ink-muted);
+  --color-paper-border: var(--ds-paper-border);
+
+  /* Accents */
+  --color-accent: var(--ds-accent);
+  --color-accent-2: var(--ds-accent-2);
+  --color-accent-foreground: var(--ds-accent-foreground);
+
+  /* Typography (wired to next/font variables when present) */
+  --font-sans: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
+  --font-display: var(--font-inter-tight, var(--font-inter, ui-sans-serif, system-ui, sans-serif));
+
+  /* Type scale */
+  --text-display: 4.5rem;
+  --text-display--line-height: 1.03;
+  --text-display--letter-spacing: -0.04em;
+
+  --text-h1: 3.25rem;
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.035em;
+
+  --text-h2: 2.25rem;
+  --text-h2--line-height: 1.12;
+  --text-h2--letter-spacing: -0.02em;
+
+  --text-h3: 1.5rem;
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.01em;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+
+  /* Radii (rounded, soft) */
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-2xl: 2.25rem;
+
+  /* Shadows (subtle depth) */
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-soft-sm: 0 6px 18px rgba(0, 0, 0, 0.25);
+  --shadow-soft-xs: 0 1px 0 rgba(0, 0, 0, 0.45);
 }
