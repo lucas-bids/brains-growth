@@ -41,14 +41,14 @@ function Card({
 }) {
   if (variant === "light") {
     return (
-      <div className="rounded-2xl border border-paper-border bg-paper shadow-soft-xs">
+      <div className="rounded-2xl border border-paper-border bg-paper ">
         {children}
       </div>
     );
   }
 
   return (
-    <div className="rounded-2xl border border-border bg-surface shadow-soft-xs">
+    <div className="rounded-2xl border border-border bg-surface ">
       {children}
     </div>
   );
@@ -63,13 +63,13 @@ function ButtonRow() {
     <div className="flex flex-wrap items-center gap-3">
       <button
         type="button"
-        className="inline-flex h-11 items-center justify-center rounded-xl bg-accent px-5 text-sm font-semibold text-accent-foreground shadow-soft-sm outline-none ring-offset-0 transition hover:brightness-95 focus-visible:ring-2 focus-visible:ring-accent/40"
+        className="inline-flex h-11 items-center justify-center rounded-xl bg-accent px-5 text-sm font-semibold text-accent-foreground outline-none ring-offset-0 transition hover:brightness-95 focus-visible:ring-2 focus-visible:ring-accent/40"
       >
         Primary
       </button>
       <button
         type="button"
-        className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-surface-2 px-5 text-sm font-semibold text-text shadow-soft-xs outline-none transition hover:bg-surface focus-visible:ring-2 focus-visible:ring-accent/25"
+        className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-surface-2 px-5 text-sm font-semibold text-text outline-none transition hover:bg-surface focus-visible:ring-2 focus-visible:ring-accent/25"
       >
         Secondary
       </button>
@@ -166,47 +166,53 @@ export default function DesignSystemPage() {
       data-theme={theme}
       className={`${inter.variable} ${interTight.variable} min-h-dvh bg-bg text-text antialiased`}
     >
-      <header className="sticky top-0 z-10 border-b border-divider bg-bg/70 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <header className="sticky top-0 z-10">
+        <div className="mx-auto max-w-6xl px-6 py-4">
+          {/* Full-width pill nav: logo left | links + toggle right */}
           <nav
             aria-label="Primary"
-            className="flex items-center gap-3 rounded-2xl border border-border bg-surface/70 px-3 py-2 shadow-soft-xs"
+            className="flex w-full items-center justify-between rounded-full p-6 bg-surface/50 backdrop-blur-md"
           >
-            <button
-              type="button"
-              className="inline-flex h-9 items-center gap-3 rounded-xl px-3 text-sm font-medium text-text-secondary transition hover:bg-surface-2 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/25"
-            >
-              <span className="inline-flex flex-col gap-1" aria-hidden>
-                <span className="h-0.5 w-5 rounded-full bg-text-secondary/70" />
-                <span className="h-0.5 w-5 rounded-full bg-text-secondary/70" />
-                <span className="h-0.5 w-5 rounded-full bg-text-secondary/70" />
-              </span>
-              Menu
-            </button>
-            <span className="px-2 text-lg text-text-secondary/70" aria-hidden>
-              *
-            </span>
-          </nav>
+            {/* Logo placeholder */}
+            <span className="text-sm font-semibold text-text">Brains Growth</span>
 
-          <div className="flex items-center gap-2 rounded-2xl border border-border bg-surface/70 p-2 shadow-soft-xs">
-            <span className="hidden rounded-full bg-surface-2 px-3 py-1.5 text-sm font-medium text-text-secondary sm:inline-flex">
-              Login
-            </span>
-            <a
-              href="#buttons"
-              className="inline-flex h-10 items-center justify-center rounded-xl bg-accent px-5 text-sm font-semibold text-accent-foreground shadow-soft-sm transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
-            >
-              Join
-            </a>
-            {/* Theme toggle: shows the target mode (what clicking will switch to) */}
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="rounded-full bg-surface-2 px-3 py-1.5 text-sm font-medium text-text-secondary transition hover:text-text"
-            >
-              {theme === "dark" ? "Light" : "Dark"}
-            </button>
-          </div>
+            {/* Nav links + toggle grouped on the right */}
+            <div className="flex items-center gap-6">
+              <a
+                href="#color-system"
+                className="text-sm text-text-secondary transition hover:text-text"
+              >
+                Color system
+              </a>
+              <a
+                href="#typography"
+                className="text-sm text-text-secondary transition hover:text-text"
+              >
+                Typography
+              </a>
+              <a
+                href="#spacing-layout"
+                className="text-sm text-text-secondary transition hover:text-text"
+              >
+                Spacing & layout
+              </a>
+              <a
+                href="#ui-elements"
+                className="text-sm text-text-secondary transition hover:text-text"
+              >
+                UI elements
+              </a>
+
+              {/* Theme toggle */}
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="rounded-full bg-surface-2 px-3 py-1.5 text-sm font-medium text-text-secondary transition hover:text-text"
+              >
+                {theme === "dark" ? "Light" : "Dark"}
+              </button>
+            </div>
+          </nav>
         </div>
       </header>
 
@@ -237,7 +243,7 @@ export default function DesignSystemPage() {
 
         <Divider className="my-2" />
 
-        <section className="py-16">
+        <section id="color-system" className="py-16">
           <SectionHeading
             title="1. Color system"
             description="Dark-first foundations with clear separation between stacked surfaces and selective accent usage."
@@ -326,7 +332,7 @@ export default function DesignSystemPage() {
                         <span className="text-small text-text-muted">
                           CTA / highlight
                         </span>
-                        <span className="h-7 w-16 rounded-lg bg-accent shadow-soft-xs" />
+                        <span className="h-7 w-16 rounded-lg bg-accent " />
                       </div>
                     </div>
                     <div className="rounded-xl border border-border bg-surface-2 p-4">
@@ -337,7 +343,7 @@ export default function DesignSystemPage() {
                         <span className="text-small text-text-muted">
                           Callout surface
                         </span>
-                        <span className="h-7 w-16 rounded-lg bg-accent-2 shadow-soft-xs" />
+                        <span className="h-7 w-16 rounded-lg bg-accent-2 " />
                       </div>
                     </div>
                   </div>
@@ -353,7 +359,7 @@ export default function DesignSystemPage() {
                         </p>
                         <button
                           type="button"
-                          className="inline-flex h-10 items-center justify-center rounded-xl bg-accent px-4 text-sm font-semibold text-accent-foreground shadow-soft-sm transition hover:brightness-95"
+                          className="inline-flex h-10 items-center justify-center rounded-xl bg-accent px-4 text-sm font-semibold text-accent-foreground transition hover:brightness-95"
                         >
                           Join
                         </button>
@@ -426,7 +432,7 @@ export default function DesignSystemPage() {
 
         <Divider />
 
-        <section className="py-16">
+        <section id="typography" className="py-16">
           <SectionHeading
             title="2. Typography"
             description="Display type uses Inter Tight for an editorial, confident feel. Body uses Inter for clean readability."
@@ -534,7 +540,7 @@ export default function DesignSystemPage() {
 
         <Divider />
 
-        <section className="py-16">
+        <section id="spacing-layout" className="py-16">
           <SectionHeading
             title="3. Spacing & layout"
             description="Use a consistent spacing scale with generous section padding and controlled line length."
@@ -667,7 +673,7 @@ export default function DesignSystemPage() {
 
         <Divider />
 
-        <section id="buttons" className="py-16">
+        <section id="ui-elements" className="py-16">
           <SectionHeading
             title="4. UI elements"
             description="A small set of primitives: buttons, pills, badges, cards, and dividers. Hover states only."
@@ -702,7 +708,7 @@ export default function DesignSystemPage() {
                         </button>
                         <button
                           type="button"
-                          className="inline-flex h-10 items-center justify-center rounded-xl bg-accent px-4 text-sm font-semibold text-accent-foreground shadow-soft-sm transition hover:brightness-95"
+                          className="inline-flex h-10 items-center justify-center rounded-xl bg-accent px-4 text-sm font-semibold text-accent-foreground transition hover:brightness-95"
                         >
                           Join
                         </button>
@@ -772,8 +778,7 @@ export default function DesignSystemPage() {
                       <Badge>FOUNDATION</Badge>
                     </div>
                     <p className="mt-2 max-w-xl text-body text-text-secondary">
-                      Use dark cards to group content without heavy borders. Add
-                      a subtle shadow only when cards overlap or need focus.
+                      Use dark cards to group content without heavy borders.
                     </p>
 
                     <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -815,7 +820,7 @@ export default function DesignSystemPage() {
                     <div className="mt-6 flex flex-wrap items-center gap-3">
                       <button
                         type="button"
-                        className="inline-flex h-11 items-center justify-center rounded-xl bg-accent px-5 text-sm font-semibold text-accent-foreground shadow-soft-sm transition hover:brightness-95"
+                        className="inline-flex h-11 items-center justify-center rounded-xl bg-accent px-5 text-sm font-semibold text-accent-foreground transition hover:brightness-95"
                       >
                         Become a member
                       </button>
@@ -860,7 +865,7 @@ export default function DesignSystemPage() {
         <section className="py-16">
           <SectionHeading
             title="5. Surface & elevation"
-            description="Stacked surfaces should separate via subtle border + value shift. Shadows are rare and soft."
+            description="Stacked surfaces should separate via subtle border + value shift."
           />
 
           <div className="mt-10 grid gap-6 lg:grid-cols-12">
@@ -872,7 +877,7 @@ export default function DesignSystemPage() {
                   </h3>
                   <p className="mt-2 max-w-2xl text-small text-text-muted">
                     Prefer value shifts (bg → surface → surface-2) with consistent
-                    radii. Use shadow only for “floating” emphasis.
+                    radii.
                   </p>
 
                   <div className="mt-8 rounded-2xl border border-border bg-bg p-6">
@@ -883,12 +888,12 @@ export default function DesignSystemPage() {
                         </p>
                         <Pill tone="accent2">Callout</Pill>
                       </div>
-                      <div className="mt-4 rounded-2xl border border-border bg-surface-2 p-5 shadow-soft-xs">
+                      <div className="mt-4 rounded-2xl border border-border bg-surface-2 p-5">
                         <p className="text-small font-semibold text-text">
                           Surface-2 (raised)
                         </p>
                         <p className="mt-2 text-small text-text-muted">
-                          Subtle elevation via value shift + soft shadow.
+                          Subtle elevation via value shift.
                         </p>
                       </div>
                     </div>
@@ -976,7 +981,7 @@ export default function DesignSystemPage() {
                         </div>
                         <button
                           type="button"
-                          className="inline-flex h-10 items-center justify-center rounded-xl bg-accent px-4 text-sm font-semibold text-accent-foreground shadow-soft-sm transition hover:brightness-95"
+                          className="inline-flex h-10 items-center justify-center rounded-xl bg-accent px-4 text-sm font-semibold text-accent-foreground transition hover:brightness-95"
                         >
                           Join
                         </button>

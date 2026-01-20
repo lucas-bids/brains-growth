@@ -29,7 +29,7 @@
   --ds-paper-border: rgba(20, 18, 16, 0.12);
 
   /* Accents */
-  --ds-accent: #a6ff2e; /* lime */
+  --ds-accent: #c3d832;
   --ds-accent-2: #6a4cff; /* purple */
   --ds-accent-foreground: #0b0b0a;
 
@@ -115,8 +115,4 @@
   --radius-xl: 1.75rem;
   --radius-2xl: 2.25rem;
 
-  /* Shadows (subtle depth) */
-  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
-  --shadow-soft-sm: 0 6px 18px rgba(0, 0, 0, 0.25);
-  --shadow-soft-xs: 0 1px 0 rgba(0, 0, 0, 0.45);
 }
