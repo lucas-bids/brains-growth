@@ -1,10 +1,45 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { Navbar } from "./components/Navbar";
+import { Hero } from "./sections/Hero";
+
 export default function Home() {
+  // Theme state: dark is the default for this project
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  // Sync with localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") {
+      setTheme(saved);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    localStorage.setItem("theme", next);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8">
-      <h1 className="text-4xl font-bold">Brains Growth</h1>
-      <p className="mt-4 text-lg text-gray-600">
-        Front-end application ready for development.
-      </p>
-    </main>
+    <div
+      data-theme={theme}
+      className="min-h-dvh bg-bg text-text antialiased transition-colors duration-300"
+    >
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      
+      <main>
+        <Hero />
+      </main>
+
+      {/* Footer or other sections would go here */}
+      <footer className="mx-auto max-w-6xl px-6 py-12">
+        <hr className="border-divider mb-8" />
+        <p className="text-small text-text-muted text-center">
+          © 2026 Brains Growth. Todos os direitos reservados.
+        </p>
+      </footer>
+    </div>
   );
 }
