@@ -1,13 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const IMAGES = [
   "/images/hero/01.jpg",
@@ -18,50 +13,67 @@ const IMAGES = [
 // Duplicate images to ensure a smooth loop
 const DISPLAY_IMAGES = [...IMAGES, ...IMAGES, ...IMAGES, ...IMAGES];
 
+// Scroll speed settings
+const BASE_SPEED = 0.5;
+const SCROLL_SPEED = 18;
+const SCROLL_STOP_DELAY = 50; // ms to wait before considering scroll "stopped"
+
 export function HeroCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!trackRef.current) return;
 
-    // Create the infinite loop
-    const totalWidth = trackRef.current.scrollWidth / 2; // Half because we duplicated
-    
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        repeat: -1,
-        defaults: { ease: "none" },
-      });
-
-      tl.to(trackRef.current, {
-        x: `-50%`,
-        duration: 30,
-      });
-
-      timelineRef.current = tl;
-
-      // Scroll-linked speed
-      ScrollTrigger.create({
-        trigger: document.body,
-        start: "top top",
-        end: "bottom bottom",
-        onUpdate: (self) => {
-          // Increase speed based on scroll velocity
-          const velocity = Math.abs(self.getVelocity());
-          const speedBoost = Math.min(velocity / 100, 5); // Cap the boost
-          gsap.to(tl, {
-            timeScale: 1 + speedBoost,
-            duration: 0.5,
-            ease: "power2.out",
-          });
-        },
-      });
+    // Create the infinite loop timeline
+    const tl = gsap.timeline({
+      repeat: -1,
+      defaults: { ease: "none" },
     });
 
-    return () => ctx.revert();
+    tl.to(trackRef.current, {
+      x: `-50%`,
+      duration: 30,
+    });
+
+    timelineRef.current = tl;
+
+    // Scroll event handler
+    const handleScroll = () => {
+      // Speed up while scrolling
+      gsap.to(tl, {
+        timeScale: SCROLL_SPEED,
+        duration: 0.4,
+        ease: "expo.out",
+      });
+
+      // Clear any existing timeout
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+
+      // Set timeout to restore normal speed when scrolling stops
+      scrollTimeoutRef.current = setTimeout(() => {
+        gsap.to(tl, {
+          timeScale: BASE_SPEED,
+          duration: 1.2,
+          ease: "expoScale.out",
+        });
+      }, SCROLL_STOP_DELAY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      tl.kill();
+    };
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
