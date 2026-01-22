@@ -8,9 +8,9 @@ export function Pill({
   pulse?: boolean;
 }) {
   const base =
-    "inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium";
+    "inline-flex items-center gap-2 rounded-full px-2 py-1 text-xs font-medium mb-4";
 
-  const dotBase = "relative h-1.5 w-1.5 rounded-full";
+  const dotBase = "relative h-2 w-2 rounded-full";
 
   const pulseRing =
     pulse
