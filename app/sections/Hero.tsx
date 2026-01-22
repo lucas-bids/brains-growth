@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { HeroCarousel } from "../components/HeroCarousel";
+import { Pill } from "../components/ui/Pill";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -33,6 +34,7 @@ export function Hero() {
       className="relative flex flex-col items-center pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
     >
       <div className="mx-auto max-w-6xl px-6 text-center">
+        <Pill tone="accent">Faça uma avaliação inicial gratuita</Pill>
         {/* Headline */}
         <h1
           ref={titleRef}

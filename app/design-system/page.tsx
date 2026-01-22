@@ -1,8 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { Inter, Inter_Tight } from "next/font/google";
+import { Navbar } from "../components/Navbar";
+import { SectionHeading } from "../components/ui/SectionHeading";
+import { Card } from "../components/ui/Card";
+import { Divider } from "../components/ui/Divider";
+import { Pill } from "../components/ui/Pill";
+import { Badge } from "../components/ui/Badge";
+import { Button } from "../components/ui/Button";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,129 +22,13 @@ const interTight = Inter_Tight({
   variable: "--font-inter-tight",
 });
 
-function SectionHeading({
-  title,
-  description,
-}: {
-  title: string;
-  description?: string;
-}) {
-  return (
-    <header className="flex flex-col gap-3">
-      <h2 className="font-display text-h2 text-text">{title}</h2>
-      {description ? (
-        <p className="max-w-2xl text-body text-text-secondary">{description}</p>
-      ) : null}
-    </header>
-  );
-}
-
-function Card({
-  children,
-  variant = "dark",
-}: {
-  children: React.ReactNode;
-  variant?: "dark" | "light";
-}) {
-  if (variant === "light") {
-    return (
-      <div className="rounded-2xl border border-paper-border bg-paper ">
-        {children}
-      </div>
-    );
-  }
-
-  return (
-    <div className="rounded-2xl border border-border bg-surface ">
-      {children}
-    </div>
-  );
-}
-
-function Divider({ className = "" }: { className?: string }) {
-  return <hr className={`border-0 border-t border-divider ${className}`} />;
-}
-
 function ButtonRow() {
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <button
-        type="button"
-        className="inline-flex h-11 items-center justify-center rounded-xl bg-accent px-5 text-sm font-semibold text-accent-foreground outline-none ring-offset-0 transition hover:brightness-95 focus-visible:ring-2 focus-visible:ring-accent/40"
-      >
-        Primary
-      </button>
-      <button
-        type="button"
-        className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-surface-2 px-5 text-sm font-semibold text-text outline-none transition hover:bg-surface focus-visible:ring-2 focus-visible:ring-accent/25"
-      >
-        Secondary
-      </button>
-      <button
-        type="button"
-        className="inline-flex h-11 items-center justify-center rounded-xl px-5 text-sm font-semibold text-text-secondary outline-none transition hover:bg-surface-2 hover:text-text focus-visible:ring-2 focus-visible:ring-accent/25"
-      >
-        Ghost
-      </button>
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Ghost</Button>
     </div>
-  );
-}
-
-function Pill({
-  children,
-  tone = "neutral",
-}: {
-  children: React.ReactNode;
-  tone?: "neutral" | "accent" | "accent2";
-}) {
-  const base =
-    "inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium";
-
-  if (tone === "accent") {
-    return (
-      <span className={`${base} bg-accent/15 text-text`}>
-        <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-        {children}
-      </span>
-    );
-  }
-
-  if (tone === "accent2") {
-    return (
-      <span className={`${base} bg-accent-2/18 text-text`}>
-        <span className="h-1.5 w-1.5 rounded-full bg-accent-2" aria-hidden />
-        {children}
-      </span>
-    );
-  }
-
-  return (
-    <span className={`${base} border border-border bg-surface-2 text-text`}>
-      {children}
-    </span>
-  );
-}
-
-function Badge({
-  children,
-  variant = "featured",
-}: {
-  children: React.ReactNode;
-  variant?: "featured" | "milestone";
-}) {
-  const base =
-    "inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide";
-
-  if (variant === "milestone") {
-    return (
-      <span className={`${base} bg-accent-2/18 text-text-secondary`}>
-        {children}
-      </span>
-    );
-  }
-
-  return (
-    <span className={`${base} bg-surface-2 text-text-secondary`}>{children}</span>
   );
 }
 
@@ -167,62 +57,7 @@ export default function DesignSystemPage() {
       data-theme={theme}
       className={`${inter.variable} ${interTight.variable} min-h-dvh bg-bg text-text antialiased`}
     >
-      <header className="sticky top-0 z-10">
-        <div className="mx-auto max-w-6xl px-6 py-4">
-          {/* Full-width pill nav: logo left | links + toggle right */}
-          <nav
-            aria-label="Primary"
-            className="flex w-full items-center justify-between rounded-full p-4 bg-surface/50 backdrop-blur-md"
-          >
-            {/* Logo */}
-            <Image
-              src="/images/logo-green.png"
-              alt="Brains Coworking"
-              width={160}
-              height={40}
-              className="h-10 w-auto"
-              priority
-            />
-
-            {/* Nav links + toggle grouped on the right */}
-            <div className="flex items-center gap-6">
-              <a
-                href="#color-system"
-                className="text-sm text-text-secondary transition hover:text-text"
-              >
-                Color system
-              </a>
-              <a
-                href="#typography"
-                className="text-sm text-text-secondary transition hover:text-text"
-              >
-                Typography
-              </a>
-              <a
-                href="#spacing-layout"
-                className="text-sm text-text-secondary transition hover:text-text"
-              >
-                Spacing & layout
-              </a>
-              <a
-                href="#ui-elements"
-                className="text-sm text-text-secondary transition hover:text-text"
-              >
-                UI elements
-              </a>
-
-              {/* Theme toggle */}
-              <button
-                type="button"
-                onClick={toggleTheme}
-                className="rounded-full bg-surface-2 px-3 py-1.5 text-sm font-medium text-text-secondary transition hover:text-text"
-              >
-                {theme === "dark" ? "Light" : "Dark"}
-              </button>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
 
       <main className="mx-auto max-w-6xl px-6 pb-20 pt-14">
         <header className="flex flex-col gap-6 pb-14">
@@ -365,12 +200,9 @@ export default function DesignSystemPage() {
                         <p className="text-small text-text-muted">
                           One primary CTA; accents act as punctuation.
                         </p>
-                        <button
-                          type="button"
-                          className="inline-flex h-10 items-center justify-center rounded-xl bg-accent px-4 text-sm font-semibold text-accent-foreground transition hover:brightness-95"
-                        >
+                        <Button variant="primary" className="h-10 px-4">
                           Join
-                        </button>
+                        </Button>
                       </div>
                     </div>
 
@@ -708,18 +540,15 @@ export default function DesignSystemPage() {
                         One primary action per surface.
                       </p>
                       <div className="flex items-center gap-3">
-                        <button
-                          type="button"
-                          className="inline-flex h-10 items-center justify-center rounded-xl border border-border bg-surface px-4 text-sm font-semibold text-text-secondary transition hover:bg-bg"
+                        <Button
+                          variant="secondary"
+                          className="h-10 px-4 bg-surface hover:bg-bg"
                         >
                           Learn more
-                        </button>
-                        <button
-                          type="button"
-                          className="inline-flex h-10 items-center justify-center rounded-xl bg-accent px-4 text-sm font-semibold text-accent-foreground transition hover:brightness-95"
-                        >
+                        </Button>
+                        <Button variant="primary" className="h-10 px-4">
                           Join
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -826,18 +655,13 @@ export default function DesignSystemPage() {
                     </p>
 
                     <div className="mt-6 flex flex-wrap items-center gap-3">
-                      <button
-                        type="button"
-                        className="inline-flex h-11 items-center justify-center rounded-xl bg-accent px-5 text-sm font-semibold text-accent-foreground transition hover:brightness-95"
-                      >
-                        Become a member
-                      </button>
-                      <button
-                        type="button"
-                        className="inline-flex h-11 items-center justify-center rounded-xl border border-paper-border bg-paper-2 px-5 text-sm font-semibold text-ink transition hover:bg-paper"
+                      <Button variant="primary">Become a member</Button>
+                      <Button
+                        variant="secondary"
+                        className="border-paper-border bg-paper-2 text-ink hover:bg-paper"
                       >
                         FAQs
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 </Card>
@@ -987,12 +811,9 @@ export default function DesignSystemPage() {
                             One strong CTA; everything else stays quiet.
                           </p>
                         </div>
-                        <button
-                          type="button"
-                          className="inline-flex h-10 items-center justify-center rounded-xl bg-accent px-4 text-sm font-semibold text-accent-foreground transition hover:brightness-95"
-                        >
+                        <Button variant="primary" className="h-10 px-4">
                           Join
-                        </button>
+                        </Button>
                       </div>
                     </div>
 
