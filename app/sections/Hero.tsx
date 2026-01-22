@@ -34,7 +34,7 @@ export function Hero() {
       className="relative flex flex-col items-center pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
     >
       <div className="mx-auto max-w-6xl px-6 text-center">
-        <Pill tone="accent">Faça uma avaliação inicial gratuita</Pill>
+        <Pill tone="accent" pulse>Faça uma avaliação inicial gratuita</Pill>
         {/* Headline */}
         <h1
           ref={titleRef}
