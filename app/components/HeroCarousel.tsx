@@ -4,9 +4,10 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CustomEase } from "gsap/CustomEase";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, CustomEase);
 }
 
 const IMAGES = [
@@ -21,7 +22,8 @@ const DISPLAY_IMAGES = [...IMAGES, ...IMAGES, ...IMAGES, ...IMAGES];
 // Scroll speed settings
 const BASE_SPEED = 0.5;
 const VELOCITY_FACTOR = 0.02; // How much scroll velocity affects the speed
-const RETURN_DURATION = 1.2; // How long it takes to return to base speed
+const BASE_RETURN_DURATION = 1; // Minimum time to return to base speed
+const RETURN_FACTOR = 0.00015; // How much velocity increases the return duration
 
 export function HeroCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,11 +53,12 @@ export function HeroCarousel() {
         onUpdate: (self) => {
           const velocity = Math.abs(self.getVelocity()); // pixels per second
           const targetTimeScale = BASE_SPEED + velocity * VELOCITY_FACTOR;
+          const returnDuration = BASE_RETURN_DURATION + velocity * RETURN_FACTOR;
 
           // Animate to the new speed quickly
           gsap.to(tl, {
             timeScale: targetTimeScale,
-            duration: 0.4,
+            duration: 0.2,
             ease: "expo.out",
             overwrite: "auto",
           });
@@ -64,11 +67,12 @@ export function HeroCarousel() {
           // and will be overwritten if more scroll updates happen
           gsap.to(tl, {
             timeScale: BASE_SPEED,
-            duration: RETURN_DURATION,
-            ease: "power2.inOut",
-            delay: 0.1,
+            duration: returnDuration,
+            ease: "power2.out",
+            delay: 0,
             overwrite: false,
           });
+          //console.log(returnDuration);
         },
       });
     });
