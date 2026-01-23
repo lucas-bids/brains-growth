@@ -32,14 +32,14 @@ export function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative flex flex-col items-center pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
+      className="relative flex flex-col items-center pt-4 md:pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
     >
       <div className="mx-auto max-w-6xl px-6 text-center">
         <Pill tone="accent" pulse>Avaliação inicial gratuita</Pill>
         {/* Headline */}
         <h1
           ref={titleRef}
-          className="font-display text-display text-text max-w-4xl mx-auto leading-[1.05] tracking-tight"
+          className="font-display text-3xl md:text-6xl text-text max-w-4xl mx-auto tracking-tight"
         >
           Crescimento maior e previsível para o seu negócio com marketing orientado a dados.
         </h1>
@@ -59,7 +59,7 @@ export function Hero() {
       </div>
 
       {/* Carousel */}
-      <div className="mt-16 w-full">
+      <div className="md:mt-16 w-full">
         <HeroCarousel />
       </div>
     </section>
