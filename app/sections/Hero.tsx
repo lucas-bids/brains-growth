@@ -39,7 +39,7 @@ export function Hero() {
         {/* Headline */}
         <h1
           ref={titleRef}
-          className="font-display text-h1 text-3xl md:text-6xl text-text max-w-4xl mx-auto tracking-tight"
+          className="font-display text-h1 text-4xl md:text-6xl text-text max-w-4xl mx-auto tracking-tight"
         >
           Crescimento maior e previsível para o seu negócio com marketing orientado a dados.
         </h1>
