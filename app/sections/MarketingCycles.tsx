@@ -3,11 +3,84 @@
 import { useRef } from "react";
 import { Card } from "../components/ui/Card";
 import { SectionHeading } from "../components/ui/SectionHeading";
+import gsap from "gsap";
+import { useEffect } from "react";
 
 export function MarketingCycles() {
   const containerRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const videoOuterRef = useRef<HTMLDivElement>(null);
+const videoInnerRef = useRef<HTMLVideoElement>(null);
+
+useEffect(() => {
+  const container = containerRef.current;
+  const outer = videoOuterRef.current;
+  const inner = videoInnerRef.current;
+
+  if (!container || !outer || !inner) return;
+
+  // Disable on coarse pointers (touch)
+  if (window.matchMedia("(pointer: coarse)").matches) return;
+
+  // Perspective belongs to the container
+  gsap.set(container, {
+    perspective: 700,
+  });
+
+  // Smooth setters
+  const outerRX = gsap.quickTo(outer, "rotationX", {
+    ease: "power3",
+    duration: 0.4,
+  });
+  const outerRY = gsap.quickTo(outer, "rotationY", {
+    ease: "power3",
+    duration: 0.4,
+  });
+  const innerX = gsap.quickTo(inner, "x", {
+    ease: "power3",
+    duration: 0.4,
+  });
+  const innerY = gsap.quickTo(inner, "y", {
+    ease: "power3",
+    duration: 0.4,
+  });
+
+  const handlePointerMove = (e: PointerEvent) => {
+    const xNorm = e.clientX / window.innerWidth;
+    const yNorm = e.clientY / window.innerHeight;
+
+    // Outer tilt (subtle)
+    outerRX(gsap.utils.interpolate(30, -30, yNorm));
+    outerRY(gsap.utils.interpolate(-30, 30, xNorm));
+
+    // Inner parallax (even subtler)
+    innerX(gsap.utils.interpolate(-40, 40, xNorm));
+    innerY(gsap.utils.interpolate(-40, 40, yNorm));
+  };
+
+  const handlePointerLeave = () => {
+    outerRX(0);
+    outerRY(0);
+    innerX(0);
+    innerY(0);
+  };
+
+  // Give the video extra bleed room for 3D tilt
+gsap.set(inner, {
+  scale: 1.12,
+  transformOrigin: "center center",
+});
+
+  container.addEventListener("pointermove", handlePointerMove);
+  container.addEventListener("pointerleave", handlePointerLeave);
+
+  return () => {
+    container.removeEventListener("pointermove", handlePointerMove);
+    container.removeEventListener("pointerleave", handlePointerLeave);
+  };
+}, []);
+
 
   return (
     <section
@@ -94,18 +167,22 @@ export function MarketingCycles() {
 
         {/* Right column: Visual representation */}
         <div className="lg:col-span-6 flex items-center justify-center">
-          <div className="aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl border border-border">
-            <video
-              src="/images/video-beneficios.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="h-full w-full object-cover"
-            />
+          <div
+  ref={videoOuterRef}
+  className="aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl border border-border"
+>
+  <video
+    ref={videoInnerRef}
+    src="/images/video-beneficios.mp4"
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="h-full w-full object-cover"
+  />
+</div>
           </div>
         </div>
-      </div>
     </section>
   );
 }
