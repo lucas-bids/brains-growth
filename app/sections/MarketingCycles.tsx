@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { Card } from "../components/ui/Card";
 import { SectionHeading } from "../components/ui/SectionHeading";
-import { MarketingOrbitAnimation } from "./MarketingOrbitAnimation";
 
 export function MarketingCycles() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -95,7 +94,7 @@ export function MarketingCycles() {
 
         {/* Right column: Visual representation */}
         <div className="lg:col-span-6 flex items-center justify-center">
-          <MarketingOrbitAnimation />
+
         </div>
       </div>
     </section>
