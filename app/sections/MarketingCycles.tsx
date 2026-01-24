@@ -94,7 +94,16 @@ export function MarketingCycles() {
 
         {/* Right column: Visual representation */}
         <div className="lg:col-span-6 flex items-center justify-center">
-
+          <div className="aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl border border-border">
+            <video
+              src="/images/video-beneficios.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>
