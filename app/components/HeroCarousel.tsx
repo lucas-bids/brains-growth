@@ -125,7 +125,7 @@ export function HeroCarousel() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-hidden py-12 select-none"
+      className="relative w-full overflow-hidden pt-18 pb-0 select-none"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >

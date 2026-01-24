@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./sections/Hero";
+import { MarketingCycles } from "./sections/MarketingCycles";
 
 export default function Home() {
   // Theme state: dark is the default for this project
@@ -31,6 +32,7 @@ export default function Home() {
       
       <main>
         <Hero />
+        <MarketingCycles />
       </main>
 
       {/* Footer or other sections would go here */}
