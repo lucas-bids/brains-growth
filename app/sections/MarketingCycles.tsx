@@ -5,6 +5,7 @@ import { Card } from "../components/ui/Card";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import gsap from "gsap";
 import { useEffect } from "react";
+import { Pill } from "../components/ui/Pill";
 
 export function MarketingCycles() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,12 +52,12 @@ useEffect(() => {
     const yNorm = e.clientY / window.innerHeight;
 
     // Outer tilt (subtle)
-    outerRX(gsap.utils.interpolate(30, -30, yNorm));
-    outerRY(gsap.utils.interpolate(-30, 30, xNorm));
+    outerRX(gsap.utils.interpolate(25, -25, yNorm));
+    outerRY(gsap.utils.interpolate(-25, 25, xNorm));
 
     // Inner parallax (even subtler)
-    innerX(gsap.utils.interpolate(-40, 40, xNorm));
-    innerY(gsap.utils.interpolate(-40, 40, yNorm));
+    innerX(gsap.utils.interpolate(-25, 25, xNorm));
+    innerY(gsap.utils.interpolate(-25, 25, yNorm));
   };
 
   const handlePointerLeave = () => {
@@ -90,6 +91,7 @@ gsap.set(inner, {
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         {/* Left column: Text content */}
         <div className="lg:col-span-6">
+        <Pill tone="accent" pulse>Avaliação inicial gratuita</Pill>
           <SectionHeading
             title="Mais velocidade, menos retrabalho. Marketing que funciona em ciclos."
           />
@@ -166,14 +168,14 @@ gsap.set(inner, {
         </div>
 
         {/* Right column: Visual representation */}
-        <div className="lg:col-span-6 flex items-center justify-center">
+        <div className="lg:col-span-6 flex items-center justify-center p-12">
           <div
   ref={videoOuterRef}
   className="aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl border border-border"
 >
   <video
     ref={videoInnerRef}
-    src="/images/video-beneficios.mp4"
+    src="/images/video-beneficios-01.mp4"
     autoPlay
     loop
     muted
