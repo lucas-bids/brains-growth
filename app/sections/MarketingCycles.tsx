@@ -15,13 +15,16 @@ if (typeof window !== "undefined") {
 
 export function MarketingCycles() {
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Right visual (pinned)
   const visualContainerRef = useRef<HTMLDivElement>(null);
 
-  // Left column (not required for pinning)
   const blockRefs = useRef<Array<HTMLDivElement | null>>([]);
+  // INNER "tilt layer"
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  // OUTER stack wrapper (translate/scale/rotateZ)
+  const outerCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+
   const [activeCardIndex, setActiveCardIndex] = useState(0);
+
   const setBlockRef = useCallback(
     (index: number) => (el: HTMLDivElement | null) => {
       blockRefs.current[index] = el;
@@ -29,14 +32,26 @@ export function MarketingCycles() {
     []
   );
 
+  const setCardRef = useCallback(
+    (index: number) => (el: HTMLDivElement | null) => {
+      cardRefs.current[index] = el;
+    },
+    []
+  );
+
+  const setOuterCardRef = useCallback(
+    (index: number) => (el: HTMLDivElement | null) => {
+      outerCardRefs.current[index] = el;
+    },
+    []
+  );
+
   useEffect(() => {
     const sectionEl = sectionRef.current;
     const container = visualContainerRef.current;
-    const blocks = blockRefs.current.filter((block): block is HTMLDivElement => Boolean(block));
+    const blocks = blockRefs.current.filter(Boolean) as HTMLDivElement[];
 
     if (!sectionEl || !container || blocks.length === 0) return;
-
-    gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
@@ -62,40 +77,91 @@ export function MarketingCycles() {
     return () => ctx.revert();
   }, []);
 
-  const cards = [
-    {
-      src: "/images/sequence/screenshot_001.jpg",
-      alt: "Visão geral do ciclo de marketing.",
-    },
-    {
-      src: "/images/sequence/screenshot_080.jpg",
-      alt: "Insights práticos para decisões de marketing.",
-    },
-    {
-      src: "/images/sequence/screenshot_160.jpg",
-      alt: "Coordenação multicanal do marketing.",
-    },
-  ];
+  // Base stack offsets (your original values)
   const stackOffsets = [
     { x: 0, y: 0, scale: 1, rotation: 0 },
     { x: -14, y: -10, scale: 0.98, rotation: -6 },
     { x: -26, y: -20, scale: 0.96, rotation: 8 },
   ];
+
+  /*
+    On every card change:
+    1) Reset tilt layer (as before)
+    2) Add a small eased "rotation nudge" to ALL outer cards (immersive)
+       - It's subtle
+       - It does not replace your base rotation; it briefly offsets it
+       - It eases back to the base rotation automatically
+  */
+  useEffect(() => {
+    // 1) Reset tilt layer
+    cardRefs.current.forEach((tiltLayer) => {
+      if (!tiltLayer) return;
+
+      gsap.to(tiltLayer, {
+        rotationX: 0,
+        rotationY: 0,
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: "power3.out",
+        overwrite: true,
+      });
+    });
+
+    // 2) Rotation nudge for ALL cards (outer wrapper)
+    const outers = outerCardRefs.current.filter(Boolean) as HTMLDivElement[];
+
+    outers.forEach((outer, index) => {
+      const base = stackOffsets[index] ?? stackOffsets[0];
+
+      // Deterministic but varied nudge per layer (top gets the smallest)
+      const layerFactor = index + 1; // 1,2,3...
+      const dir = activeCardIndex % 2 === 0 ? 1 : -1;
+      const nudgeDeg = dir * (1.2 / layerFactor); // subtle
+
+      // Kill any in-flight nudge on this element
+      gsap.killTweensOf(outer);
+
+      // Nudge away, then settle back to base rotation (both eased)
+      gsap.to(outer, {
+        duration: 0.28,
+        ease: "sine.out",
+        onUpdate: () => {
+          // no-op (keeps tween alive even if style updates elsewhere)
+        },
+        // GSAP will write inline transform; we immediately restore base in the next tween
+        // to keep your intended stack layout.
+        rotation: base.rotation + nudgeDeg,
+      });
+
+      gsap.to(outer, {
+        duration: 0.55,
+        ease: "expo.out",
+        rotation: base.rotation,
+        delay: 0.02,
+      });
+    });
+  }, [activeCardIndex]);
+
+  const cards = [
+    { src: "/images/sequence/timer.png", alt: "Visão geral do ciclo de marketing." },
+    { src: "/images/sequence/chuteira.png", alt: "Insights práticos para decisões de marketing." },
+    { src: "/images/sequence/disco-ball.png", alt: "Coordenação multicanal do marketing." },
+  ];
+
   const orderedCards = cards.map((_, index) => cards[(activeCardIndex + index) % cards.length]);
 
   return (
     <section ref={sectionRef} className="relative mx-auto max-w-6xl px-6 py-16 md:py-24">
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         {/* LEFT */}
-        <div className="lg:col-span-6 space-y-32">
+        <div className="lg:col-span-7 space-y-32">
           {/* Block 1 */}
           <div ref={setBlockRef(0)}>
             <Pill tone="accent" pulse>
               Avaliação inicial gratuita
             </Pill>
-
             <SectionHeading title="Mais velocidade, menos retrabalho. Marketing que funciona em ciclos." />
-
             <div className="mt-8 space-y-6">
               <p className="text-body text-text-secondary leading-relaxed">
                 Em vez de depender de ações isoladas, criamos fluxos contínuos de marketing apoiados
@@ -108,7 +174,6 @@ export function MarketingCycles() {
                 sistema que evolui com dados reais.
               </p>
             </div>
-
             <div className="mt-12 grid gap-4 sm:grid-cols-2">
               <Card>
                 <div className="p-5">
@@ -133,7 +198,6 @@ export function MarketingCycles() {
                   </p>
                 </div>
               </Card>
-
               <Card>
                 <div className="p-5">
                   <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-2/20">
@@ -173,7 +237,6 @@ export function MarketingCycles() {
                 Não é apenas sobre o que fazer, mas sobre o que faz sentido fazer agora — e o que
                 deve esperar.
               </p>
-
               <div className="grid gap-4 sm:grid-cols-2">
                 <Card>
                   <div className="p-5">
@@ -208,7 +271,6 @@ export function MarketingCycles() {
                 Cada canal tem um papel claro dentro da estratégia, contribuindo para geração de
                 demanda e conversão — não apenas “marcando presença”.
               </p>
-
               <div className="grid gap-4 sm:grid-cols-2">
                 <Card>
                   <div className="p-5">
@@ -231,32 +293,48 @@ export function MarketingCycles() {
           </div>
         </div>
 
-        {/* RIGHT */}
-        <div className="lg:col-span-6">
-          <div ref={visualContainerRef} className="top-0 flex items-center justify-center">
-            <div className="relative aspect-[4/5] w-full max-w-md">
-              {orderedCards.map((card, index) => {
-                const offset = stackOffsets[index] ?? stackOffsets[0];
-                return (
-                  <div
-                    key={card.src}
-                    className="absolute inset-0 rounded-[28px] border border-white/60 bg-surface/40 p-4 backdrop-blur-md transition-transform duration-500 ease-out"
-                    style={{
-                      transform: `translate(${offset.x}px, ${offset.y}px) scale(${offset.scale}) rotate(${offset.rotation}deg)`,
-                      zIndex: cards.length - index,
-                    }}
-                  >
-                    <img
-                      src={card.src}
-                      alt={card.alt}
-                      className="h-full w-full rounded-2xl object-cover"
-                    />
-                  </div>
-                );
-              })}
+{/* RIGHT */}
+<div className="lg:col-span-5">
+  <div
+    ref={visualContainerRef}
+    className="top-0 flex items-center justify-center p-6 md:p-10 lg:p-12"
+  >
+    <div className="relative aspect-[4/5] w-full max-w-md">
+      {orderedCards.map((card, index) => {
+        const offset = stackOffsets[index] ?? stackOffsets[0];
+
+        return (
+          <div
+            key={card.src}
+            ref={setOuterCardRef(index)}
+            className="absolute inset-0 rounded-[28px] border border-white/40 transition-transform duration-500 ease-out"
+            style={{
+              transform: `translate(${offset.x}px, ${offset.y}px) scale(${offset.scale}) rotate(${offset.rotation}deg)`,
+              zIndex: cards.length - index,
+              willChange: "transform",
+              transformStyle: "preserve-3d",
+            }}
+          >
+            <div
+              ref={setCardRef(index)}
+              className="relative flex h-full w-full items-center justify-center rounded-[28px]"
+              style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+            >
+              <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
+              <img
+                src={card.src}
+                alt={card.alt}
+                className="relative block p-16"
+                draggable={false}
+              />
             </div>
           </div>
-        </div>
+        );
+      })}
+    </div>
+  </div>
+</div>
+
       </div>
     </section>
   );
