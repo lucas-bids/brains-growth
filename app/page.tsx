@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
+import { SmoothScroll } from "./components/SmoothScroll";
 import { Hero } from "./sections/Hero";
 import { MarketingCycles } from "./sections/MarketingCycles";
 
@@ -24,24 +25,26 @@ export default function Home() {
   };
 
   return (
-    <div
-      data-theme={theme}
-      className="min-h-dvh bg-bg text-text antialiased transition-colors duration-300"
-    >
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
-      
-      <main>
-        <Hero />
-        <MarketingCycles />
-      </main>
+    <SmoothScroll>
+      <div
+        data-theme={theme}
+        className="min-h-dvh bg-bg text-text antialiased transition-colors duration-300"
+      >
+        <Navbar theme={theme} toggleTheme={toggleTheme} />
 
-      {/* Footer or other sections would go here */}
-      <footer className="mx-auto max-w-6xl px-6 py-12">
-        <hr className="border-divider mb-8" />
-        <p className="text-small text-text-muted text-center">
-          © 2026 Brains Growth. Todos os direitos reservados.
-        </p>
-      </footer>
-    </div>
+        <main>
+          <Hero />
+          <MarketingCycles />
+        </main>
+
+        {/* Footer or other sections would go here */}
+        <footer className="mx-auto max-w-6xl px-6 py-12">
+          <hr className="border-divider mb-8" />
+          <p className="text-small text-text-muted text-center">
+            © 2026 Brains Growth. Todos os direitos reservados.
+          </p>
+        </footer>
+      </div>
+    </SmoothScroll>
   );
 }
