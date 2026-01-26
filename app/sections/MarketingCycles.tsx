@@ -146,8 +146,8 @@ export function MarketingCycles() {
 
   const cards = [
     { src: "/images/sequence/timer.png", alt: "Visão geral do ciclo de marketing." },
-    { src: "/images/sequence/chuteira.png", alt: "Insights práticos para decisões de marketing." },
-    { src: "/images/sequence/disco-ball.png", alt: "Coordenação multicanal do marketing." },
+    { src: "/images/sequence/chess-queen.png", alt: "Insights práticos para decisões de marketing." },
+    { src: "/images/sequence/satelite.png", alt: "Coordenação multicanal do marketing." },
   ];
 
   const orderedCards = cards.map((_, index) => cards[(activeCardIndex + index) % cards.length]);
@@ -370,7 +370,7 @@ export function MarketingCycles() {
                       <img
                         src={card.src}
                         alt={card.alt}
-                        className="relative block p-16"
+                        className="relative block p-16 max-h-full"
                         draggable={false}
                       />
                     </div>
