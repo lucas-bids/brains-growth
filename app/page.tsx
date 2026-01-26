@@ -25,14 +25,13 @@ export default function Home() {
   };
 
   return (
-    <SmoothScroll>
-      <div
-        data-theme={theme}
-        className="min-h-dvh bg-bg text-text antialiased transition-colors duration-300"
-      >
-        <Navbar theme={theme} toggleTheme={toggleTheme} />
-
-        <main>
+    <div
+      data-theme={theme}
+      className="min-h-dvh bg-bg text-text antialiased transition-colors duration-300"
+    >
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <SmoothScroll contentClassName="min-h-dvh bg-bg">
+        <main className="pt-24">
           <Hero />
           <MarketingCycles />
         </main>
@@ -44,7 +43,7 @@ export default function Home() {
             © 2026 Brains Growth. Todos os direitos reservados.
           </p>
         </footer>
-      </div>
-    </SmoothScroll>
+      </SmoothScroll>
+    </div>
   );
 }

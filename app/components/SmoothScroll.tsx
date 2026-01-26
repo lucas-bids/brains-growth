@@ -10,9 +10,15 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 interface SmoothScrollProps {
   children: React.ReactNode;
+  className?: string;
+  contentClassName?: string;
 }
 
-export function SmoothScroll({ children }: SmoothScrollProps) {
+export function SmoothScroll({
+  children,
+  className,
+  contentClassName,
+}: SmoothScrollProps) {
   const smootherRef = useRef<ScrollSmoother | null>(null);
 
   useEffect(() => {
@@ -33,8 +39,10 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
   }, []);
 
   return (
-    <div id="smooth-wrapper">
-      <div id="smooth-content">{children}</div>
+    <div id="smooth-wrapper" className={className}>
+      <div id="smooth-content" className={contentClassName}>
+        {children}
+      </div>
     </div>
   );
 }

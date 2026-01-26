@@ -49,7 +49,7 @@ export function Navbar({ theme, toggleTheme }: NavbarProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-6xl px-6 py-4">
         {/* Full-width pill nav: logo left | links + toggle right */}
         <nav
