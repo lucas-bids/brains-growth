@@ -32,9 +32,7 @@ export function MarketingCycles() {
   useEffect(() => {
     const sectionEl = sectionRef.current;
     const container = visualContainerRef.current;
-    const blocks = blockRefs.current.filter(
-      (block): block is HTMLDivElement => Boolean(block)
-    );
+    const blocks = blockRefs.current.filter((block): block is HTMLDivElement => Boolean(block));
 
     if (!sectionEl || !container || blocks.length === 0) return;
 
@@ -79,19 +77,14 @@ export function MarketingCycles() {
     },
   ];
   const stackOffsets = [
-    { x: 0, y: 0, scale: 1 },
-    { x: -12, y: -12, scale: 0.98 },
-    { x: -24, y: -24, scale: 0.96 },
+    { x: 0, y: 0, scale: 1, rotation: 0 },
+    { x: -14, y: -10, scale: 0.98, rotation: -6 },
+    { x: -26, y: -20, scale: 0.96, rotation: 8 },
   ];
-  const orderedCards = cards.map(
-    (_, index) => cards[(activeCardIndex + index) % cards.length]
-  );
+  const orderedCards = cards.map((_, index) => cards[(activeCardIndex + index) % cards.length]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative mx-auto max-w-6xl px-6 py-16 md:py-24"
-    >
+    <section ref={sectionRef} className="relative mx-auto max-w-6xl px-6 py-16 md:py-24">
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         {/* LEFT */}
         <div className="lg:col-span-6 space-y-32">
@@ -105,16 +98,14 @@ export function MarketingCycles() {
 
             <div className="mt-8 space-y-6">
               <p className="text-body text-text-secondary leading-relaxed">
-                Em vez de depender de ações isoladas, criamos fluxos contínuos de
-                marketing apoiados por automação de IA e tecnologia. Isso reduz
-                atrasos, elimina tarefas manuais e garante que cada campanha siga
-                um processo claro — do planejamento à mensuração.
+                Em vez de depender de ações isoladas, criamos fluxos contínuos de marketing apoiados
+                por automação de IA e tecnologia. Isso reduz atrasos, elimina tarefas manuais e
+                garante que cada campanha siga um processo claro — do planejamento à mensuração.
               </p>
               <p className="text-body text-text-secondary leading-relaxed">
-                O resultado é mais agilidade na execução, ajustes mais rápidos e
-                consistência nos resultados ao longo do tempo. Você deixa de
-                "testar ideias" e passa a operar um sistema que evolui com dados
-                reais.
+                O resultado é mais agilidade na execução, ajustes mais rápidos e consistência nos
+                resultados ao longo do tempo. Você deixa de "testar ideias" e passa a operar um
+                sistema que evolui com dados reais.
               </p>
             </div>
 
@@ -136,9 +127,7 @@ export function MarketingCycles() {
                       />
                     </svg>
                   </div>
-                  <h3 className="font-display text-h3 text-text">
-                    Automação de IA
-                  </h3>
+                  <h3 className="font-display text-h3 text-text">Automação de IA</h3>
                   <p className="mt-2 text-small text-text-muted">
                     Reduz atrasos e elimina tarefas manuais
                   </p>
@@ -162,9 +151,7 @@ export function MarketingCycles() {
                       />
                     </svg>
                   </div>
-                  <h3 className="font-display text-h3 text-text">
-                    Evolução com dados
-                  </h3>
+                  <h3 className="font-display text-h3 text-text">Evolução com dados</h3>
                   <p className="mt-2 text-small text-text-muted">
                     Sistema que evolui com dados reais
                   </p>
@@ -177,23 +164,20 @@ export function MarketingCycles() {
           <div ref={setBlockRef(1)}>
             <MarketingBlock title="Decisões melhores, baseadas em experiência prática.">
               <p>
-                Seu marketing é acompanhado por profissionais com vivência real
-                em marketing, dados e desenvolvimento. Isso significa menos
-                ruído na comunicação, análises mais precisas e recomendações que
-                levam em conta limitações técnicas, orçamento e contexto de
+                Seu marketing é acompanhado por profissionais com vivência real em marketing, dados
+                e desenvolvimento. Isso significa menos ruído na comunicação, análises mais precisas
+                e recomendações que levam em conta limitações técnicas, orçamento e contexto de
                 negócio.
               </p>
               <p>
-                Não é apenas sobre o que fazer, mas sobre o que faz sentido
-                fazer agora — e o que deve esperar.
+                Não é apenas sobre o que fazer, mas sobre o que faz sentido fazer agora — e o que
+                deve esperar.
               </p>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <Card>
                   <div className="p-5">
-                    <h3 className="font-display text-h3 text-text">
-                      Visão técnica + marketing
-                    </h3>
+                    <h3 className="font-display text-h3 text-text">Visão técnica + marketing</h3>
                     <p className="mt-2 text-small text-text-muted">
                       Decisões considerando stack, dados e execução real.
                     </p>
@@ -201,9 +185,7 @@ export function MarketingCycles() {
                 </Card>
                 <Card>
                   <div className="p-5">
-                    <h3 className="font-display text-h3 text-text">
-                      Prioridade correta
-                    </h3>
+                    <h3 className="font-display text-h3 text-text">Prioridade correta</h3>
                     <p className="mt-2 text-small text-text-muted">
                       Foco no que gera impacto agora.
                     </p>
@@ -217,24 +199,20 @@ export function MarketingCycles() {
           <div ref={setBlockRef(2)}>
             <MarketingBlock title="Sua marca visível nos canais certos, de forma coordenada.">
               <p>
-                Planejamos e acompanhamos sua presença nos principais pontos de
-                contato: anúncios em Meta e Google, conteúdo orgânico, SEO e
-                novos formatos orientados por IA (como LEO). Tudo funciona de
-                forma integrada, evitando esforços duplicados ou mensagens
+                Planejamos e acompanhamos sua presença nos principais pontos de contato: anúncios em
+                Meta e Google, conteúdo orgânico, SEO e novos formatos orientados por IA (como LEO).
+                Tudo funciona de forma integrada, evitando esforços duplicados ou mensagens
                 desconectadas.
               </p>
               <p>
-                Cada canal tem um papel claro dentro da estratégia,
-                contribuindo para geração de demanda e conversão — não apenas
-                “marcando presença”.
+                Cada canal tem um papel claro dentro da estratégia, contribuindo para geração de
+                demanda e conversão — não apenas “marcando presença”.
               </p>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <Card>
                   <div className="p-5">
-                    <h3 className="font-display text-h3 text-text">
-                      Estratégia integrada
-                    </h3>
+                    <h3 className="font-display text-h3 text-text">Estratégia integrada</h3>
                     <p className="mt-2 text-small text-text-muted">
                       Mensagens coerentes em todos os canais.
                     </p>
@@ -242,9 +220,7 @@ export function MarketingCycles() {
                 </Card>
                 <Card>
                   <div className="p-5">
-                    <h3 className="font-display text-h3 text-text">
-                      Papel claro por canal
-                    </h3>
+                    <h3 className="font-display text-h3 text-text">Papel claro por canal</h3>
                     <p className="mt-2 text-small text-text-muted">
                       Aquisição, nutrição e conversão bem definidas.
                     </p>
@@ -257,24 +233,25 @@ export function MarketingCycles() {
 
         {/* RIGHT */}
         <div className="lg:col-span-6">
-          <div
-            ref={visualContainerRef}
-            className="top-0 flex items-center justify-center"
-          >
-            <div className="relative aspect-[4/5] w-full max-w-md rounded-2xl border border-border bg-surface">
+          <div ref={visualContainerRef} className="top-0 flex items-center justify-center">
+            <div className="relative aspect-[4/5] w-full max-w-md">
               {orderedCards.map((card, index) => {
                 const offset = stackOffsets[index] ?? stackOffsets[0];
                 return (
-                  <img
+                  <div
                     key={card.src}
-                    src={card.src}
-                    alt={card.alt}
-                    className="absolute inset-0 h-full w-full rounded-2xl border border-border/60 object-cover transition-transform duration-500 ease-out"
+                    className="absolute inset-0 rounded-[28px] border border-white/60 bg-surface/40 p-4 backdrop-blur-md transition-transform duration-500 ease-out"
                     style={{
-                      transform: `translate(${offset.x}px, ${offset.y}px) scale(${offset.scale})`,
+                      transform: `translate(${offset.x}px, ${offset.y}px) scale(${offset.scale}) rotate(${offset.rotation}deg)`,
                       zIndex: cards.length - index,
                     }}
-                  />
+                  >
+                    <img
+                      src={card.src}
+                      alt={card.alt}
+                      className="h-full w-full rounded-2xl object-cover"
+                    />
+                  </div>
                 );
               })}
             </div>
