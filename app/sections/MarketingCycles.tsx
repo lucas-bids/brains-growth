@@ -52,6 +52,7 @@ export function MarketingCycles() {
     const blocks = blockRefs.current.filter(Boolean) as HTMLDivElement[];
 
     if (!sectionEl || !container || blocks.length === 0) return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
@@ -158,6 +159,21 @@ export function MarketingCycles() {
         <div className="lg:col-span-7 space-y-32">
           {/* Block 1 */}
           <div ref={setBlockRef(0)}>
+          <div className="lg:hidden">
+              <div className="relative mx-auto mb-10 aspect-[4/5] w-full max-w-sm">
+                <div className="absolute inset-0 rounded-[28px] border border-white/40">
+                  <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
+                    <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
+                    <img
+                      src={cards[0].src}
+                      alt={cards[0].alt}
+                      className="relative block p-12"
+                      draggable={false}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
             <Pill tone="accent" pulse>
               Avaliação inicial gratuita
             </Pill>
@@ -226,6 +242,21 @@ export function MarketingCycles() {
 
           {/* Block 2 */}
           <div ref={setBlockRef(1)}>
+          <div className="lg:hidden">
+              <div className="relative mx-auto mb-10 aspect-[4/5] w-full max-w-sm">
+                <div className="absolute inset-0 rounded-[28px] border border-white/40">
+                  <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
+                    <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
+                    <img
+                      src={cards[1].src}
+                      alt={cards[1].alt}
+                      className="relative block p-12"
+                      draggable={false}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
             <MarketingBlock title="Decisões melhores, baseadas em experiência prática.">
               <p>
                 Seu marketing é acompanhado por profissionais com vivência real em marketing, dados
@@ -260,6 +291,21 @@ export function MarketingCycles() {
 
           {/* Block 3 */}
           <div ref={setBlockRef(2)}>
+          <div className="lg:hidden">
+              <div className="relative mx-auto mb-10 aspect-[4/5] w-full max-w-sm">
+                <div className="absolute inset-0 rounded-[28px] border border-white/40">
+                  <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
+                    <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
+                    <img
+                      src={cards[2].src}
+                      alt={cards[2].alt}
+                      className="relative block p-12"
+                      draggable={false}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
             <MarketingBlock title="Sua marca visível nos canais certos, de forma coordenada.">
               <p>
                 Planejamos e acompanhamos sua presença nos principais pontos de contato: anúncios em
@@ -293,47 +339,47 @@ export function MarketingCycles() {
           </div>
         </div>
 
-{/* RIGHT */}
-<div className="lg:col-span-5">
-  <div
-    ref={visualContainerRef}
-    className="top-0 flex items-center justify-center p-6 md:p-10 lg:p-12"
-  >
-    <div className="relative aspect-[4/5] w-full max-w-md">
-      {orderedCards.map((card, index) => {
-        const offset = stackOffsets[index] ?? stackOffsets[0];
-
-        return (
+        {/* RIGHT */}
+        <div className="hidden lg:block lg:col-span-5">
           <div
-            key={card.src}
-            ref={setOuterCardRef(index)}
-            className="absolute inset-0 rounded-[28px] border border-white/40 transition-transform duration-500 ease-out"
-            style={{
-              transform: `translate(${offset.x}px, ${offset.y}px) scale(${offset.scale}) rotate(${offset.rotation}deg)`,
-              zIndex: cards.length - index,
-              willChange: "transform",
-              transformStyle: "preserve-3d",
-            }}
+            ref={visualContainerRef}
+            className="top-0 flex items-center justify-center p-6 md:p-10 lg:p-12"
           >
-            <div
-              ref={setCardRef(index)}
-              className="relative flex h-full w-full items-center justify-center rounded-[28px]"
-              style={{ transformStyle: "preserve-3d", willChange: "transform" }}
-            >
-              <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
-              <img
-                src={card.src}
-                alt={card.alt}
-                className="relative block p-16"
-                draggable={false}
-              />
+            <div className="relative aspect-[4/5] w-full max-w-md">
+              {orderedCards.map((card, index) => {
+                const offset = stackOffsets[index] ?? stackOffsets[0];
+
+                return (
+                  <div
+                    key={card.src}
+                    ref={setOuterCardRef(index)}
+                    className="absolute inset-0 rounded-[28px] border border-white/40 transition-transform duration-500 ease-out"
+                    style={{
+                      transform: `translate(${offset.x}px, ${offset.y}px) scale(${offset.scale}) rotate(${offset.rotation}deg)`,
+                      zIndex: cards.length - index,
+                      willChange: "transform",
+                      transformStyle: "preserve-3d",
+                    }}
+                  >
+                    <div
+                      ref={setCardRef(index)}
+                      className="relative flex h-full w-full items-center justify-center rounded-[28px]"
+                      style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+                    >
+                      <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
+                      <img
+                        src={card.src}
+                        alt={card.alt}
+                        className="relative block p-16"
+                        draggable={false}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
-        );
-      })}
-    </div>
-  </div>
-</div>
+          </div>
 
       </div>
     </section>
