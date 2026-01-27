@@ -88,42 +88,10 @@ export function HeroCarousel() {
     return () => ctx.revert();
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-
-    const rect = containerRef.current.getBoundingClientRect();
-    const mouseX = e.clientX;
-    const range = 250; // pixels
-    const maxScale = 1.15;
-
-    itemsRef.current.forEach((item) => {
-      if (!item) return;
-      const itemRect = item.getBoundingClientRect();
-      const itemCenterX = itemRect.left + itemRect.width / 2;
-      const distance = Math.abs(mouseX - itemCenterX);
-
-      if (distance < range) {
-        const scale = 1 + (maxScale - 1) * (1 - distance / range);
-        gsap.to(item, { scale, duration: 0.4, ease: "expoScale.out" });
-      } else {
-        gsap.to(item, { scale: 1, duration: 0.4, ease: "expoScale.out" });
-      }
-    });
-  };
-
-  const handleMouseLeave = () => {
-    itemsRef.current.forEach((item) => {
-      if (!item) return;
-      gsap.to(item, { scale: 1, duration: 0.4, ease: "power2.out" });
-    });
-  };
-
   return (
     <div
       ref={containerRef}
       className="relative w-full overflow-hidden pt-18 pb-0 select-none"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
     >
       <div ref={trackRef} className="flex w-max gap-6 px-3">
         {DISPLAY_IMAGES.map((src, index) => (

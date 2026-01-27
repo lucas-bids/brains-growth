@@ -353,7 +353,7 @@ export function MarketingCycles() {
                   <div
                     key={card.src}
                     ref={setOuterCardRef(index)}
-                    className="absolute inset-0 rounded-[28px] border border-white/40 transition-transform duration-500 ease-out"
+                    className="absolute inset-0 rounded-[28px] border border-border transition-transform duration-500 ease-out"
                     style={{
                       transform: `translate(${offset.x}px, ${offset.y}px) scale(${offset.scale}) rotate(${offset.rotation}deg)`,
                       zIndex: cards.length - index,
@@ -366,7 +366,7 @@ export function MarketingCycles() {
                       className="relative flex h-full w-full items-center justify-center rounded-[28px]"
                       style={{ transformStyle: "preserve-3d", willChange: "transform" }}
                     >
-                      <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
+                      <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-sm" />
                       <img
                         src={card.src}
                         alt={card.alt}
