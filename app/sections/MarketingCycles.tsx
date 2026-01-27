@@ -160,7 +160,7 @@ export function MarketingCycles() {
           {/* Block 1 */}
           <div ref={setBlockRef(0)}>
           <div className="lg:hidden">
-              <div className="relative mx-auto mb-10 aspect-[4/5] w-full max-w-sm">
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-md">
                 <div className="absolute inset-0 rounded-[28px] border border-white/40">
                   <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
                     <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
@@ -341,10 +341,10 @@ export function MarketingCycles() {
 
         {/* RIGHT */}
         <div className="hidden lg:block lg:col-span-5">
-          <div
-            ref={visualContainerRef}
-            className="top-0 flex items-center justify-center p-6 md:p-10 lg:p-12"
-          >
+        <div
+  ref={visualContainerRef}
+  className="relative top-[2rem] p-6 pb-0 md:p-12 lg:p-12"
+>
             <div className="relative aspect-[4/5] w-full max-w-md">
               {orderedCards.map((card, index) => {
                 const offset = stackOffsets[index] ?? stackOffsets[0];

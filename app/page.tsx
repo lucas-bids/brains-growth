@@ -5,6 +5,7 @@ import { Navbar } from "./components/Navbar";
 import { SmoothScroll } from "./components/SmoothScroll";
 import { Hero } from "./sections/Hero";
 import { MarketingCycles } from "./sections/MarketingCycles";
+import { Testimonials } from "./sections/Testimonials";
 
 export default function Home() {
   // Theme state: dark is the default for this project
@@ -34,6 +35,7 @@ export default function Home() {
         <main className="pt-24">
           <Hero />
           <MarketingCycles />
+          <Testimonials />
         </main>
 
         {/* Footer or other sections would go here */}

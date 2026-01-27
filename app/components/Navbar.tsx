@@ -55,7 +55,7 @@ export function Navbar({ theme, toggleTheme }: NavbarProps) {
         <nav
           ref={navRef}
           aria-label="Primary"
-          className="relative flex w-full items-center justify-between rounded-full bg-surface/50 p-4 backdrop-blur-md transition-colors"
+          className="relative flex w-full items-center justify-between rounded-full bg-surface/50 p-4 border border-border backdrop-blur-md transition-colors"
         >
           {/* Logo */}
           <Image
