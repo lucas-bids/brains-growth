@@ -5,10 +5,22 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 
-const IMAGES = ["/images/hero/01.jpg", "/images/hero/02.jpg", "/images/hero/03.jpg"];
+const HERO_MEDIA = [
+  { type: "image", src: "/images/hero/code-editor.jpg", alt: "Classroom activity in motion" },
+  { type: "image", src: "/images/hero/google-ads.jpg", alt: "Outdoor learning exercise" },
+  { type: "video", src: "/images/hero/video-trimmed.mp4", label: "Movement class highlight" },
+  { type: "image", src: "/images/hero/chat-gpt.jpg", alt: "Children practicing balance" },
+  { type: "image", src: "/images/hero/google-analytics.jpg", alt: "Outdoor learning exercise" },
+  { type: "image", src: "/images/hero/meta-ads.jpg", alt: "Outdoor learning exercise" },
+] as const;
 
 // Duplicate images to ensure a smooth loop
-const DISPLAY_IMAGES = [...IMAGES, ...IMAGES, ...IMAGES, ...IMAGES];
+const DISPLAY_MEDIA = [
+  ...HERO_MEDIA,
+  ...HERO_MEDIA,
+  ...HERO_MEDIA,
+  ...HERO_MEDIA,
+];
 
 // Base motion tuning
 const BASE_SPEED = 0.9; // resting timeScale
@@ -172,23 +184,37 @@ export function HeroCarousel() {
       ref={containerRef}
       className="relative w-full overflow-hidden pt-24 pb-0 select-none"
     >
-      <div ref={trackRef} className="flex w-max gap-8 px-3">
-        {DISPLAY_IMAGES.map((src, index) => (
+      <div ref={trackRef} className="flex w-max gap-6 px-3">
+      {DISPLAY_MEDIA.map((item, index) => (
           <div
-            key={`${src}-${index}`}
+          key={`${item.type}-${item.src}-${index}`}
             ref={(el) => {
               itemsRef.current[index] = el;
             }}
             className="relative h-[230px] w-[120px] shrink-0 overflow-hidden rounded-2xl border border-border bg-surface-2 md:h-[300px] md:w-[220px]"
           >
-            <Image
-              src={src}
-              alt={`Project ${index + 1}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 220px, 300px"
-              priority={index < 6}
-            />
+            {item.type === "image" ? (
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 220px, 300px"
+                priority={index < 6}
+              />
+            ) : (
+              <video
+                className="h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label={item.label}
+              >
+                <source src={item.src} type="video/mp4" />
+              </video>
+            )}
           </div>
         ))}
       </div>
