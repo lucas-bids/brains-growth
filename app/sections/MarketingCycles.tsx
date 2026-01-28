@@ -46,19 +46,26 @@ export function MarketingCycles() {
     []
   );
 
+  const leftColRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const sectionEl = sectionRef.current;
     const container = visualContainerRef.current;
+    const leftCol = leftColRef.current;
     const blocks = blockRefs.current.filter(Boolean) as HTMLDivElement[];
 
-    if (!sectionEl || !container || blocks.length === 0) return;
+    if (!sectionEl || !container || !leftCol || blocks.length === 0) return;
     if (!window.matchMedia("(min-width: 1024px)").matches) return;
 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: sectionEl,
-        start: "top top+=96",
-        end: "bottom bottom-=96",
+        start: "top top",
+        end: () => {
+          // how long the left column can scroll past the pinned visual
+          const scrollDistance = leftCol.scrollHeight - container.offsetHeight + 30;
+          return "+=" + Math.max(0, scrollDistance);
+        },
         pin: container,
         pinSpacing: true,
         invalidateOnRefresh: true,
@@ -146,7 +153,10 @@ export function MarketingCycles() {
 
   const cards = [
     { src: "/images/sequence/timer.png", alt: "Visão geral do ciclo de marketing." },
-    { src: "/images/sequence/chess-queen.png", alt: "Insights práticos para decisões de marketing." },
+    {
+      src: "/images/sequence/chess-queen.png",
+      alt: "Insights práticos para decisões de marketing.",
+    },
     { src: "/images/sequence/satelite.png", alt: "Coordenação multicanal do marketing." },
   ];
 
@@ -156,11 +166,11 @@ export function MarketingCycles() {
     <section ref={sectionRef} className="relative mx-auto max-w-6xl px-6 py-16 md:py-24">
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         {/* LEFT */}
-        <div className="lg:col-span-7 space-y-32">
+        <div ref={leftColRef} className="lg:col-span-7 space-y-32">
           {/* Block 1 */}
           <div ref={setBlockRef(0)}>
-          <div className="lg:hidden">
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-md">
+            <div className="lg:hidden">
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-md">
                 <div className="absolute inset-0 rounded-[28px] border border-white/40">
                   <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
                     <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
@@ -242,7 +252,7 @@ export function MarketingCycles() {
 
           {/* Block 2 */}
           <div ref={setBlockRef(1)}>
-          <div className="lg:hidden">
+            <div className="lg:hidden">
               <div className="relative mx-auto mb-10 aspect-[4/5] w-full max-w-sm">
                 <div className="absolute inset-0 rounded-[28px] border border-white/40">
                   <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
@@ -291,7 +301,7 @@ export function MarketingCycles() {
 
           {/* Block 3 */}
           <div ref={setBlockRef(2)}>
-          <div className="lg:hidden">
+            <div className="lg:hidden">
               <div className="relative mx-auto mb-10 aspect-[4/5] w-full max-w-sm">
                 <div className="absolute inset-0 rounded-[28px] border border-white/40">
                   <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
@@ -341,10 +351,7 @@ export function MarketingCycles() {
 
         {/* RIGHT */}
         <div className="hidden lg:block lg:col-span-5">
-        <div
-  ref={visualContainerRef}
-  className="relative top-[2rem] p-6 pb-0 md:p-12 lg:p-12"
->
+          <div ref={visualContainerRef} className="relative p-6 pb-0 md:p-12 lg:p-12">
             <div className="relative aspect-[4/5] w-full max-w-md">
               {orderedCards.map((card, index) => {
                 const offset = stackOffsets[index] ?? stackOffsets[0];
@@ -379,8 +386,7 @@ export function MarketingCycles() {
               })}
             </div>
           </div>
-          </div>
-
+        </div>
       </div>
     </section>
   );
