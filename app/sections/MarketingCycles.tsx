@@ -4,6 +4,8 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { Zap, BarChart3, ScanEye, Target, Layers, Share2 } from "lucide-react";
+
 import { Card } from "../components/ui/Card";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { Pill } from "../components/ui/Pill";
@@ -185,7 +187,7 @@ export function MarketingCycles() {
               </div>
             </div>
             <Pill tone="accent" pulse>
-              Avaliação inicial gratuita
+              Agilidade e eficiência
             </Pill>
             <SectionHeading title="Mais velocidade, menos retrabalho. Marketing que funciona em ciclos." />
             <div className="mt-8 space-y-6">
@@ -204,19 +206,7 @@ export function MarketingCycles() {
               <Card>
                 <div className="p-5">
                   <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent/20">
-                    <svg
-                      className="h-5 w-5 text-accent"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 10V3L4 14h7v7l9-11h-7z"
-                      />
-                    </svg>
+                    <Zap className="h-5 w-5 text-accent" />
                   </div>
                   <h3 className="font-display text-h3 text-text">Automação de IA</h3>
                   <p className="mt-2 text-small text-text-muted">
@@ -227,19 +217,7 @@ export function MarketingCycles() {
               <Card>
                 <div className="p-5">
                   <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-2/20">
-                    <svg
-                      className="h-5 w-5 text-accent-2"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                      />
-                    </svg>
+                    <BarChart3 className="h-5 w-5 text-accent-2" />
                   </div>
                   <h3 className="font-display text-h3 text-text">Evolução com dados</h3>
                   <p className="mt-2 text-small text-text-muted">
@@ -267,6 +245,9 @@ export function MarketingCycles() {
                 </div>
               </div>
             </div>
+            <Pill tone="accent" pulse>
+              Equipe experiente
+            </Pill>
             <MarketingBlock title="Decisões melhores, baseadas em experiência prática.">
               <p>
                 Seu marketing é acompanhado por profissionais com vivência real em marketing, dados
@@ -281,6 +262,9 @@ export function MarketingCycles() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <Card>
                   <div className="p-5">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent/20">
+                      <ScanEye className="h-5 w-5 text-accent" />
+                    </div>
                     <h3 className="font-display text-h3 text-text">Visão técnica + marketing</h3>
                     <p className="mt-2 text-small text-text-muted">
                       Decisões considerando stack, dados e execução real.
@@ -289,6 +273,9 @@ export function MarketingCycles() {
                 </Card>
                 <Card>
                   <div className="p-5">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-2/20">
+                      <Target className="h-5 w-5 text-accent-2" />
+                    </div>
                     <h3 className="font-display text-h3 text-text">Prioridade correta</h3>
                     <p className="mt-2 text-small text-text-muted">
                       Foco no que gera impacto agora.
@@ -316,6 +303,9 @@ export function MarketingCycles() {
                 </div>
               </div>
             </div>
+            <Pill tone="accent" pulse>
+              Apareça no momento e lugar certo
+            </Pill>
             <MarketingBlock title="Sua marca visível nos canais certos, de forma coordenada.">
               <p>
                 Planejamos e acompanhamos sua presença nos principais pontos de contato: anúncios em
@@ -330,6 +320,9 @@ export function MarketingCycles() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <Card>
                   <div className="p-5">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent/20">
+                      <Layers className="h-5 w-5 text-accent" />
+                    </div>
                     <h3 className="font-display text-h3 text-text">Estratégia integrada</h3>
                     <p className="mt-2 text-small text-text-muted">
                       Mensagens coerentes em todos os canais.
@@ -338,6 +331,9 @@ export function MarketingCycles() {
                 </Card>
                 <Card>
                   <div className="p-5">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent-2/20">
+                      <Share2 className="h-5 w-5 text-accent-2" />
+                    </div>
                     <h3 className="font-display text-h3 text-text">Papel claro por canal</h3>
                     <p className="mt-2 text-small text-text-muted">
                       Aquisição, nutrição e conversão bem definidas.

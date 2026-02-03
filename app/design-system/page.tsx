@@ -9,6 +9,7 @@ import { Divider } from "../components/ui/Divider";
 import { Pill } from "../components/ui/Pill";
 import { Badge } from "../components/ui/Badge";
 import { Button } from "../components/ui/Button";
+import { Zap, BarChart3 } from "lucide-react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -685,6 +686,47 @@ export default function DesignSystemPage() {
                         Divider inside a container (subtle).
                       </p>
                     </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            <div className="lg:col-span-12">
+              <Card>
+                <div className="p-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <h3 className="font-display text-h3 text-text">Icons</h3>
+                    <Badge>FOUNDATION</Badge>
+                  </div>
+                  <p className="mt-2 text-small text-text-muted">
+                    Lucide React icons. Standard size <code className="rounded bg-surface-2 px-1.5 py-0.5 text-xs">h-5 w-5</code> inside a
+                    container <code className="rounded bg-surface-2 px-1.5 py-0.5 text-xs">h-10 w-10 rounded-xl</code>. Use accent or
+                    accent-2 for color; alternate within blocks for rhythm.
+                  </p>
+                  <div className="mt-6 rounded-xl border border-border bg-surface-2 p-5">
+                    <p className="text-xs font-semibold text-text-secondary">
+                      Correct usage
+                    </p>
+                    <div className="mt-4 flex flex-wrap items-center gap-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/20">
+                        <Zap className="h-5 w-5 text-accent" />
+                      </div>
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-2/20">
+                        <BarChart3 className="h-5 w-5 text-accent-2" />
+                      </div>
+                      <p className="text-small text-text-muted">
+                        Benefit cards, feature callouts.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-6 rounded-xl border border-border bg-surface-2 p-5">
+                    <p className="text-xs font-semibold text-text-secondary">
+                      Avoid
+                    </p>
+                    <p className="mt-3 text-small text-text-muted">
+                      Don’t mix custom inline SVGs; use Lucide for consistency. Avoid oversized icons or
+                      uncontained accent color.
+                    </p>
                   </div>
                 </div>
               </Card>

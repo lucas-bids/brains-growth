@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { Draggable } from "gsap/dist/Draggable";
 
 interface Testimonial {
   id: string;
@@ -13,6 +14,8 @@ interface Testimonial {
 interface TestimonialsCarouselProps {
   testimonials: Testimonial[];
 }
+
+gsap.registerPlugin(Draggable);
 
 function StarIcon({ className }: { className?: string }) {
   return (
@@ -65,7 +68,9 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
 export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const draggableRef = useRef<Draggable | null>(null);
+  const isDraggingRef = useRef(false);
+  const tickRef = useRef<(() => void) | null>(null);
 
   // Duplicate for seamless loop
   const displayItems = [...testimonials, ...testimonials, ...testimonials];
@@ -75,45 +80,60 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
     if (!track) return;
 
     const ctx = gsap.context(() => {
-      // Calculate the width of one set of testimonials
       const totalWidth = track.scrollWidth / 3;
+      const wrapX = gsap.utils.wrap(-totalWidth, 0);
+      const speedPerSecond = totalWidth / (testimonials.length * 1180);
+      let currentX = 0;
 
-      // Infinite loop at constant speed
-      const tl = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
-      tl.to(track, {
-        x: -totalWidth,
-        duration: testimonials.length * 8, // ~8s per card for smooth movement
-      });
+      gsap.set(track, { x: currentX });
 
-      timelineRef.current = tl;
+      const tick = () => {
+        if (isDraggingRef.current) return;
+        currentX = wrapX(currentX - speedPerSecond * gsap.ticker.deltaRatio(60));
+        gsap.set(track, { x: currentX });
+      };
+      tickRef.current = tick;
+      gsap.ticker.add(tick);
+
+      const draggable = Draggable.create(track, {
+        type: "x",
+        trigger: track,
+        allowNativeTouchScrolling: true,
+        onPress() {
+          isDraggingRef.current = true;
+        },
+        onDrag() {
+          const wrappedX = wrapX(this.x);
+          currentX = wrappedX;
+          this.x = wrappedX;
+          gsap.set(track, { x: wrappedX });
+        },
+        onRelease() {
+          isDraggingRef.current = false;
+        },
+      })[0];
+
+      draggableRef.current = draggable;
     });
 
-    return () => ctx.revert();
+    return () => {
+      if (tickRef.current) {
+        gsap.ticker.remove(tickRef.current);
+        tickRef.current = null;
+      }
+      draggableRef.current?.kill();
+      draggableRef.current = null;
+      ctx.revert();
+    };
   }, [testimonials.length]);
 
-  const handleMouseEnter = () => {
-    if (timelineRef.current) {
-      gsap.to(timelineRef.current, { timeScale: 0, duration: 0.4, ease: "power2.out" });
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (timelineRef.current) {
-      gsap.to(timelineRef.current, { timeScale: 1, duration: 0.4, ease: "power2.out" });
-    }
-  };
-
   return (
-    <div
-      className="relative w-full overflow-hidden"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className="relative w-full overflow-hidden">
       {/* Fade edges */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-bg to-transparent md:w-24" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-bg to-transparent md:w-24" />
 
-      <div ref={trackRef} className="flex w-max gap-4 py-2 md:gap-6">
+      <div ref={trackRef} className="flex w-max cursor-grab touch-pan-y gap-4 py-2 active:cursor-grabbing md:gap-6">
         {displayItems.map((testimonial, index) => (
           <TestimonialCard
             key={`${testimonial.id}-${index}`}

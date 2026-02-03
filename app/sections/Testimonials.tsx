@@ -2,6 +2,7 @@
 
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { TestimonialsCarousel } from "../components/TestimonialsCarousel";
+import { Pill } from "../components/ui/Pill";
 
 // Placeholder testimonials data
 const TESTIMONIALS = [
@@ -58,10 +59,15 @@ const TESTIMONIALS = [
 export function Testimonials() {
   return (
     <section className="py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl px-6 text-center">
+        <Pill tone="accent" pulse>
+          Junte-se as centenas de clientes felizes
+        </Pill>
         <SectionHeading
           title="Brains Growth é do grupo Brains, confiado por centenas de pessoas."
           description="A Brains Growth é o braço especializado em marketing digital do grupo Brains. Faça parte você também."
+          align="center"
+          spacing="hero"
         />
       </div>
 
