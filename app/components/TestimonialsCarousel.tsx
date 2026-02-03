@@ -9,6 +9,7 @@ interface Testimonial {
   name: string;
   avatar: string;
   text: string;
+  source: "google" | "woba";
 }
 
 interface TestimonialsCarouselProps {
@@ -16,6 +17,40 @@ interface TestimonialsCarouselProps {
 }
 
 gsap.registerPlugin(Draggable);
+
+function TestimonialSource({ source }: { source: Testimonial["source"] }) {
+  if (source === "google") {
+    return (
+      <p className="flex items-center gap-1.5 text-xs text-text-muted">
+        <span>Avaliação do</span>
+        <span className="inline-flex items-center gap-1 text-text-secondary">
+          <span
+            aria-hidden="true"
+            className="text-sm font-semibold leading-none text-transparent bg-[conic-gradient(from_0deg,_#4285F4_0deg_90deg,_#34A853_90deg_180deg,_#FBBC05_180deg_270deg,_#EA4335_270deg_360deg)] bg-clip-text"
+          >
+            G
+          </span>
+          <span>Google</span>
+        </span>
+      </p>
+    );
+  }
+
+  return (
+    <p className="flex items-center gap-1.5 text-xs text-text-muted">
+      <span>Avaliação do</span>
+      <span className="inline-flex items-center gap-1 text-text-secondary">
+        <span
+          aria-hidden="true"
+          className="inline-flex h-3.5 w-3.5 items-center justify-center rounded-[2px] bg-[#F6D232] text-[8px] font-bold uppercase text-black"
+        >
+          W
+        </span>
+        <span>Woba</span>
+      </span>
+    </p>
+  );
+}
 
 function StarIcon({ className }: { className?: string }) {
   return (
@@ -42,7 +77,7 @@ function StarRating() {
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <article className="flex w-[280px] shrink-0 flex-col gap-4 rounded-2xl border border-border bg-surface p-5 md:w-[320px]">
+    <article className="flex w-[280px] shrink-0 flex-col rounded-2xl border border-border bg-surface p-5 md:w-[320px]">
       <div className="flex items-center gap-3">
         <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-surface-2">
           <img
@@ -59,9 +94,12 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           <StarRating />
         </div>
       </div>
-      <p className="line-clamp-4 text-small leading-relaxed text-text-secondary">
+      <p className="mt-4 line-clamp-4 text-small leading-relaxed text-text-secondary">
         {testimonial.text}
       </p>
+      <div className="mt-auto pt-4">
+        <TestimonialSource source={testimonial.source} />
+      </div>
     </article>
   );
 }
