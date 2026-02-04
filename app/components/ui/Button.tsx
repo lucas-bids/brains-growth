@@ -6,7 +6,7 @@ export function Button({
   className = "",
 }: {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "accent2";
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
   className?: string;
@@ -32,6 +32,18 @@ export function Button({
         type={type}
         onClick={onClick}
         className={`${base} h-11 border border-border bg-surface-2 text-text hover:bg-surface focus-visible:ring-accent/25 ${className}`}
+      >
+        {children}
+      </button>
+    );
+  }
+
+  if (variant === "accent2") {
+    return (
+      <button
+        type={type}
+        onClick={onClick}
+        className={`${base} h-11 bg-accent-2 text-white ring-offset-0 hover:brightness-95 focus-visible:ring-accent-2/40 ${className}`}
       >
         {children}
       </button>
