@@ -32,7 +32,7 @@ export function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative flex flex-col items-center pt-4 md:pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
+      className="relative flex flex-col items-center pt-4 md:pt-24 md:pt-32 overflow-hidden"
     >
       <div className="mx-auto max-w-6xl px-6 text-center">
         <Pill tone="accent" pulse>Avaliação inicial gratuita</Pill>
@@ -59,7 +59,7 @@ export function Hero() {
       </div>
 
       {/* Carousel */}
-      <div className="md:mt-16 w-full">
+      <div className="w-full">
         <HeroCarousel />
       </div>
     </section>

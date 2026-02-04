@@ -165,7 +165,7 @@ export function MarketingCycles() {
   const orderedCards = cards.map((_, index) => cards[(activeCardIndex + index) % cards.length]);
 
   return (
-    <section ref={sectionRef} className="relative mx-auto max-w-6xl px-6 py-16 md:py-24">
+    <section ref={sectionRef} className="relative mx-auto max-w-6xl px-6 pt-16 md:pt-48">
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         {/* LEFT */}
         <div ref={leftColRef} className="lg:col-span-7 space-y-32">

@@ -16,66 +16,66 @@ const TESTIMONIALS: {
 }[] = [
   {
     id: "1",
-    name: "Mariana Costa",
+    name: "Wellington Borges",
     avatar: "https://i.pravatar.cc/150?img=1",
-    text: "A Brains Growth transformou completamente nossa estratégia digital. Em poucos meses, nosso ROI triplicou e finalmente entendemos nossos dados.",
+    text: "Excelente espaço, atendimento humanizado, local seguro e localização estratégica.",
     source: "google",
   },
   {
     id: "2",
-    name: "Rafael Oliveira",
-    avatar: "https://i.pravatar.cc/150?img=3",
-    text: "Profissionalismo e resultados reais. A equipe entende tanto de marketing quanto de tecnologia, o que faz toda a diferença na execução.",
-    source: "woba",
+    name: "Gabriela Carmona",
+    avatar: "https://i.pravatar.cc/150?img=2",
+    text: "Um excelente espaço para compartilhar ideias, projetos e oportunidades de negócios.",
+    source: "google",
   },
   {
     id: "3",
-    name: "Camila Ferreira",
-    avatar: "https://i.pravatar.cc/150?img=5",
-    text: "Depois de anos testando agências, finalmente encontrei um parceiro que entrega o que promete. Comunicação clara e entregas consistentes.",
+    name: "Christian Bundt",
+    avatar: "https://i.pravatar.cc/150?img=3",
+    text: "Ambiente incrível, com diversas comodidades e espaços. Vibe super positiva.",
     source: "google",
   },
   {
     id: "4",
-    name: "Bruno Santos",
-    avatar: "https://i.pravatar.cc/150?img=8",
-    text: "O ciclo de marketing faz muito sentido. Antes, era tudo desconectado. Agora temos um processo claro que evolui com nossos dados.",
+    name: "Revisor do Woba",
+    avatar: "https://i.pravatar.cc/150?img=4",
+    text: "Excelente local, muito organizado, copa completa e espaços bem cuidados.",
     source: "woba",
   },
   {
     id: "5",
-    name: "Ana Paula Lima",
-    avatar: "https://i.pravatar.cc/150?img=9",
-    text: "Impressionada com a velocidade de execução. O que outras agências levavam semanas, eles entregam em dias com qualidade superior.",
+    name: "Simone Oliveira",
+    avatar: "https://i.pravatar.cc/150?img=5",
+    text: "Fui super bem atendida e as pessoas são super simpáticas! Um ótimo lugar para fazer networking.",
     source: "google",
   },
   {
     id: "6",
-    name: "Lucas Mendes",
-    avatar: "https://i.pravatar.cc/150?img=11",
-    text: "A integração entre canais foi game-changer para nós. Agora temos uma visão completa do funil e sabemos exatamente onde investir.",
-    source: "woba",
+    name: "Acp David",
+    avatar: "https://i.pravatar.cc/150?img=6",
+    text: "Apaixonada pelo Brains e sua filosofia... Toda a estrutura é pensada para INSPIRAR. Equipe comprometida.",
+    source: "google",
   },
   {
     id: "7",
-    name: "Fernanda Rocha",
-    avatar: "https://i.pravatar.cc/150?img=16",
-    text: "Equipe técnica e estratégica ao mesmo tempo. Raro encontrar quem entende de performance e também de branding.",
+    name: "M K",
+    avatar: "https://i.pravatar.cc/150?img=7",
+    text: "Ótimo ambiente, sem contar o atendimento que é nota 10, funcionários muito educados, preços maravilhosos, muito bom voltarei mais vezes.",
     source: "google",
   },
   {
     id: "8",
-    name: "Pedro Almeida",
-    avatar: "https://i.pravatar.cc/150?img=12",
-    text: "Transparência total nos relatórios e métricas. Pela primeira vez, sei exatamente onde meu investimento está indo.",
-    source: "woba",
+    name: "Aline França",
+    avatar: "https://i.pravatar.cc/150?img=8",
+    text: "Que lugar mais acolhedor! Simplesmente encantada! Espaço agradável, limpo, super organizado e receptivo!",
+    source: "google",
   },
 ];
 
 export function Testimonials() {
   return (
-    <section className="py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-6 text-center">
+    <section className="pt-48">
+      <div className="mx-auto max-w-xl px-6 text-center">
         <Pill tone="accent" pulse>
           Junte-se as centenas de clientes felizes
         </Pill>

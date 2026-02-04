@@ -5,6 +5,7 @@ import { Navbar } from "./components/Navbar";
 import { SmoothScroll } from "./components/SmoothScroll";
 import { Hero } from "./sections/Hero";
 import { MarketingCycles } from "./sections/MarketingCycles";
+import { Pricing } from "./sections/Pricing";
 import { Testimonials } from "./sections/Testimonials";
 
 export default function Home() {
@@ -36,6 +37,7 @@ export default function Home() {
           <Hero />
           <MarketingCycles />
           <Testimonials />
+          <Pricing />
         </main>
 
         {/* Footer or other sections would go here */}

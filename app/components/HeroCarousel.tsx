@@ -182,7 +182,7 @@ export function HeroCarousel() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-hidden pt-24 pb-0 select-none"
+      className="relative w-full overflow-hidden pt-48 pb-0 select-none"
     >
       <div ref={trackRef} className="flex w-max gap-6 px-3">
       {DISPLAY_MEDIA.map((item, index) => (
