@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
+import { FloatingCTA } from "./components/FloatingCTA";
 import { SmoothScroll } from "./components/SmoothScroll";
 import { Hero } from "./sections/Hero";
 import { MarketingCycles } from "./sections/MarketingCycles";
@@ -47,7 +48,15 @@ export default function Home() {
             © 2026 Brains Growth. Todos os direitos reservados.
           </p>
         </footer>
+
+        {/* Landing zone for CTA morph: reserves space at page end */}
+        <div
+          id="cta-landing-zone"
+          className="min-h-[140px] w-full px-4 md:min-h-[160px] md:px-6"
+        />
       </SmoothScroll>
+
+      <FloatingCTA />
     </div>
   );
 }
