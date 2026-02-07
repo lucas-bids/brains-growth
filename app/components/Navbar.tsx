@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type MouseEvent as ReactMouseEvent } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { Divider } from "./ui/Divider";
 
 interface NavbarProps {
@@ -9,11 +11,21 @@ interface NavbarProps {
   toggleTheme: () => void;
 }
 
-const navLinks = [
-  { href: "#color-system", label: "Color system" },
-  { href: "#typography", label: "Typography" },
-  { href: "#spacing-layout", label: "Spacing & layout" },
-  { href: "#ui-elements", label: "UI elements" },
+type NavLink = {
+  href: string;
+  label: string;
+  scrollTarget?: "#inicio" | "#contato";
+  external?: boolean;
+};
+
+const navLinks: NavLink[] = [
+  { href: "#inicio", label: "Início", scrollTarget: "#inicio" },
+  {
+    href: "https://brainscoworking.com.br/politica-de-privacidade/",
+    label: "Política de privacidade",
+    external: true,
+  },
+  { href: "#contato", label: "Contato", scrollTarget: "#contato" },
 ];
 
 export function Navbar({ theme, toggleTheme }: NavbarProps) {
@@ -25,7 +37,7 @@ export function Navbar({ theme, toggleTheme }: NavbarProps) {
   useEffect(() => {
     if (!isMobileMenuOpen) return;
 
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: globalThis.MouseEvent) => {
       const target = event.target as Node;
       if (
         navRef.current &&
@@ -43,10 +55,66 @@ export function Navbar({ theme, toggleTheme }: NavbarProps) {
     };
   }, [isMobileMenuOpen]);
 
+  useEffect(() => {
+    gsap.registerPlugin(ScrollToPlugin);
+  }, []);
+
+  const scrollToSection = (target: "#inicio" | "#contato") => {
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: { y: target, autoKill: true },
+      ease: "power3.out",
+    });
+  };
+
   // Close menu when clicking a nav link
-  const handleNavLinkClick = () => {
+  const handleNavLinkClick = (
+    event: ReactMouseEvent<HTMLAnchorElement>,
+    link: NavLink
+  ) => {
+    if (link.scrollTarget) {
+      event.preventDefault();
+      scrollToSection(link.scrollTarget);
+    }
     setIsMobileMenuOpen(false);
   };
+
+  const themeIcon =
+    theme === "dark" ? (
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-4 w-4"
+      >
+        <circle cx="12" cy="12" r="4" />
+        <line x1="12" y1="2" x2="12" y2="5" />
+        <line x1="12" y1="19" x2="12" y2="22" />
+        <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
+        <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
+        <line x1="2" y1="12" x2="5" y2="12" />
+        <line x1="19" y1="12" x2="22" y2="12" />
+        <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
+        <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
+      </svg>
+    ) : (
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-4 w-4"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+      </svg>
+    );
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -73,6 +141,9 @@ export function Navbar({ theme, toggleTheme }: NavbarProps) {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(event) => handleNavLinkClick(event, link)}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 className="text-sm text-text-secondary transition hover:text-text"
               >
                 {link.label}
@@ -83,9 +154,10 @@ export function Navbar({ theme, toggleTheme }: NavbarProps) {
             <button
               type="button"
               onClick={toggleTheme}
+              aria-label="Alternar tema"
               className="rounded-full bg-surface-2 px-3 py-1.5 text-sm font-medium text-text-secondary transition hover:text-text"
             >
-              {theme === "dark" ? "Light" : "Dark"}
+              {themeIcon}
             </button>
           </div>
 
@@ -137,7 +209,9 @@ export function Navbar({ theme, toggleTheme }: NavbarProps) {
                 <div key={link.href}>
                   <a
                     href={link.href}
-                    onClick={handleNavLinkClick}
+                    onClick={(event) => handleNavLinkClick(event, link)}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
                     className="block py-3 text-sm text-text-secondary transition hover:text-text"
                   >
                     {link.label}
@@ -154,9 +228,10 @@ export function Navbar({ theme, toggleTheme }: NavbarProps) {
                   toggleTheme();
                   setIsMobileMenuOpen(false);
                 }}
+                aria-label="Alternar tema"
                 className="w-full rounded-full bg-surface-2 px-3 py-2 text-left text-sm font-medium text-text-secondary transition hover:text-text"
               >
-                {theme === "dark" ? "Light" : "Dark"} mode
+                {themeIcon}
               </button>
             </nav>
           </div>
