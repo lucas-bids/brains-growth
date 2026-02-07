@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useLayoutEffect } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -53,8 +54,8 @@ export function FloatingCTA() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: landingZone,
-          start: "bottom bottom",
-          end: "bottom bottom-=160",
+          start: "top bottom",
+          end: "bottom bottom-=100",
           scrub: true,
           invalidateOnRefresh: true,
         },
@@ -116,7 +117,7 @@ export function FloatingCTA() {
       ref={containerRef}
       role="region"
       aria-label="Fale com o Lucas"
-      className="fixed bottom-6 left-1/2 z-50 mx-auto w-full max-w-md -translate-x-1/2 px-4 md:max-w-xl"
+      className="fixed bottom-6 left-1/2 z-50 mx-auto w-full max-w-2xl -translate-x-1/2 px-4 md:max-w-2xl"
     >
       <div
         ref={pillRef}
@@ -124,14 +125,16 @@ export function FloatingCTA() {
       >
         {/* Left: Avatar + Text (hidden on mobile in floating state) */}
         <div className="flex min-w-0 flex-1 items-center gap-3 md:gap-4">
-          {/* Placeholder avatar */}
-          <div
-            className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-surface-2 md:h-14 md:w-14"
-            aria-hidden
-          >
-            <div className="flex h-full w-full items-center justify-center text-lg font-semibold text-text-muted">
-              L
-            </div>
+{/* Avatar */}
+<div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-surface-2 md:h-14 md:w-14">
+            <Image
+              src="/images/perfil-lucas.jpeg"
+              alt="Lucas"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 48px, 56px"
+              priority
+            />
           </div>
 
           {/* Text stack: hidden on mobile (floating), revealed in expanded state via GSAP */}
