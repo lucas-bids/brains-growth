@@ -37,21 +37,38 @@ export function FloatingCTA() {
 
     const ctx = gsap.context(() => {
       const isMobile = () => window.innerWidth < 768;
+      const getRootFontSize = () => {
+        const value = parseFloat(
+          getComputedStyle(document.documentElement).fontSize
+        );
+        return Number.isFinite(value) ? value : 16;
+      };
+      const getCollapsedWidth = () => container.getBoundingClientRect().width;
+      const getExpandedWidth = () => {
+        const rem = getRootFontSize();
+        const desired = Math.min(window.innerWidth - rem * 2, rem * 72);
+        return Math.max(desired, getCollapsedWidth());
+      };
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: landingZone,
-          start: "top bottom-=20",
-          end: "bottom bottom",
+          start: "bottom bottom",
+          end: "bottom bottom-=160",
           scrub: true,
           invalidateOnRefresh: true,
         },
       });
 
-      tl.to(
+      tl.fromTo(
         container,
         {
-          maxWidth: "min(calc(100vw - 2rem), 72rem)",
+          width: getCollapsedWidth,
+          maxWidth: getCollapsedWidth,
+        },
+        {
+          width: getExpandedWidth,
+          maxWidth: getExpandedWidth,
           xPercent: -50,
           duration: 1,
         },
@@ -62,8 +79,8 @@ export function FloatingCTA() {
           {
             paddingLeft: 32,
             paddingRight: 32,
-            paddingTop: 20,
-            paddingBottom: 20,
+            paddingTop: 32,
+            paddingBottom: 32,
             duration: 1,
           },
           0

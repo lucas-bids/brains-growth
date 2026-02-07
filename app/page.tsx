@@ -40,6 +40,11 @@ export default function Home() {
           <Testimonials />
           <Pricing />
         </main>
+        
+        <div
+          id="cta-landing-zone"
+          className="min-h-[140px] w-full px-4 md:min-h-[160px] md:px-6"
+        />
 
         {/* Footer or other sections would go here */}
         <footer className="mx-auto max-w-6xl px-6 py-12">
@@ -50,10 +55,6 @@ export default function Home() {
         </footer>
 
         {/* Landing zone for CTA morph: reserves space at page end */}
-        <div
-          id="cta-landing-zone"
-          className="min-h-[140px] w-full px-4 md:min-h-[160px] md:px-6"
-        />
       </SmoothScroll>
 
       <FloatingCTA />
