@@ -76,7 +76,7 @@ const PRICING_CARDS: {
 
 export function Pricing() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pt-48">
+    <section className="mx-auto max-w-6xl px-6 pt-24 md:pt-48">
       <div className="mx-auto text-center max-w-xl">
         <Pill tone="accent" pulse>
           Avaliação sem custo

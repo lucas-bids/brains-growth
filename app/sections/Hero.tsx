@@ -32,7 +32,7 @@ export function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative flex flex-col items-center pt-4 md:pt-24 md:pt-32 overflow-hidden"
+      className="relative flex flex-col items-center pt-12 md:pt-32 overflow-hidden"
     >
       <div className="mx-auto max-w-6xl px-6 text-center">
         <Pill tone="accent" pulse>Avaliação inicial gratuita</Pill>

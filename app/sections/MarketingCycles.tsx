@@ -165,21 +165,21 @@ export function MarketingCycles() {
   const orderedCards = cards.map((_, index) => cards[(activeCardIndex + index) % cards.length]);
 
   return (
-    <section ref={sectionRef} className="relative mx-auto max-w-6xl px-6 pt-16 md:pt-48">
+    <section ref={sectionRef} className="relative mx-auto max-w-6xl px-6 pt-24 md:pt-48">
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         {/* LEFT */}
-        <div ref={leftColRef} className="lg:col-span-7 space-y-32">
+        <div ref={leftColRef} className="lg:col-span-7 space-y-12 md:space-y-36">
           {/* Block 1 */}
           <div ref={setBlockRef(0)}>
             <div className="lg:hidden">
-              <div className="relative mx-auto aspect-[4/5] w-full max-w-md">
+              <div className="relative mb-10 mx-auto aspect-[4/5] w-full max-w-md">
                 <div className="absolute inset-0 rounded-[28px] border border-white/40">
                   <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
                     <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
                     <img
                       src={cards[0].src}
                       alt={cards[0].alt}
-                      className="relative block p-12"
+                      className="relative block p-12 max-h-full"
                       draggable={false}
                     />
                   </div>
@@ -238,7 +238,7 @@ export function MarketingCycles() {
                     <img
                       src={cards[1].src}
                       alt={cards[1].alt}
-                      className="relative block p-12"
+                      className="relative block p-12 max-h-full"
                       draggable={false}
                     />
                   </div>
@@ -296,7 +296,7 @@ export function MarketingCycles() {
                     <img
                       src={cards[2].src}
                       alt={cards[2].alt}
-                      className="relative block p-12"
+                      className="relative block p-12 max-h-full"
                       draggable={false}
                     />
                   </div>

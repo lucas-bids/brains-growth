@@ -182,7 +182,7 @@ export function HeroCarousel() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-hidden pt-48 pb-0 select-none"
+      className="relative w-full overflow-hidden pt-24 md:pt-48 pb-0 select-none"
     >
       <div ref={trackRef} className="flex w-max gap-6 px-3">
       {DISPLAY_MEDIA.map((item, index) => (
@@ -191,7 +191,7 @@ export function HeroCarousel() {
             ref={(el) => {
               itemsRef.current[index] = el;
             }}
-            className="relative h-[230px] w-[120px] shrink-0 overflow-hidden rounded-2xl border border-border bg-surface-2 md:h-[300px] md:w-[220px]"
+            className="relative h-[230px] w-[152px] shrink-0 overflow-hidden rounded-2xl border border-border bg-surface-2 md:h-[300px] md:w-[220px]"
           >
             {item.type === "image" ? (
               <Image

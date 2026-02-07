@@ -74,7 +74,7 @@ const TESTIMONIALS: {
 
 export function Testimonials() {
   return (
-    <section className="pt-48">
+    <section className="pt-24 md:pt-48">
       <div className="mx-auto max-w-xl px-6 text-center">
         <Pill tone="accent" pulse>
           Junte-se as centenas de clientes felizes
