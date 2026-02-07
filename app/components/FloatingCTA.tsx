@@ -140,9 +140,9 @@ export function FloatingCTA() {
           {/* Text stack: hidden on mobile (floating), revealed in expanded state via GSAP */}
           <div
             ref={textStackRef}
-            className="min-w-0 opacity-0 w-0 overflow-hidden md:opacity-100 md:w-auto md:overflow-visible"
+            className="min-w-0 opacity-100 w-auto overflow-visible md:opacity-100 md:w-auto md:overflow-visible"
           >
-            <p className="truncate text-sm font-medium text-text md:text-base">
+            <p className="whitespace-normal text-sm font-medium text-text md:truncate md:text-base">
               {TITLE}
             </p>
             <p className="truncate text-xs text-text-muted md:text-sm">
@@ -157,8 +157,19 @@ export function FloatingCTA() {
           target="_blank"
           rel="noopener noreferrer"
           className={`shrink-0 ${primaryButtonBase}`}
+          aria-label="Fale com o Lucas no WhatsApp"
         >
-          {CTA_LABEL}
+          <span className="md:hidden" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              className="h-5 w-5"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12.05 2.01a9.94 9.94 0 0 0-8.54 14.92L2 22l5.23-1.37A9.93 9.93 0 1 0 12.05 2.01Zm0 1.8a8.1 8.1 0 0 1 6.93 12.31l-.36.6.82 3.03-3.08-.81-.57.34a8.1 8.1 0 1 1-3.73-15.47Zm4.36 10.74c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.18-.7-.62-1.17-1.4-1.3-1.63-.14-.24-.01-.36.1-.48.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.68 2.56 4.06 3.6.56.24 1 .38 1.34.48.56.18 1.08.16 1.48.1.46-.06 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
+            </svg>
+          </span>
+          <span className="hidden md:inline">{CTA_LABEL}</span>
         </a>
       </div>
     </div>
