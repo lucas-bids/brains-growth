@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { Draggable } from "gsap/dist/Draggable";
 
@@ -79,12 +80,13 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <article className="flex w-[280px] shrink-0 flex-col rounded-2xl border border-border bg-surface p-5 md:w-[320px]">
       <div className="flex items-center gap-3">
-        <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-surface-2">
-          <img
+        <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-surface-2">
+          <Image
             src={testimonial.avatar}
             alt=""
-            className="h-full w-full object-cover"
-            loading="lazy"
+            fill
+            sizes="40px"
+            className="object-cover"
           />
         </div>
         <div className="min-w-0">
