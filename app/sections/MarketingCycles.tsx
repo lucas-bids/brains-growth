@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState, useCallback, useMemo } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -87,12 +88,15 @@ export function MarketingCycles() {
     return () => ctx.revert();
   }, []);
 
-  // Base stack offsets (your original values)
-  const stackOffsets = [
-    { x: 0, y: 0, scale: 1, rotation: 0 },
-    { x: -14, y: -10, scale: 0.98, rotation: -6 },
-    { x: -26, y: -20, scale: 0.96, rotation: 8 },
-  ];
+  // Base stack offsets (your original values) - memoized to avoid exhaustive-deps warning
+  const stackOffsets = useMemo(
+    () => [
+      { x: 0, y: 0, scale: 1, rotation: 0 },
+      { x: -14, y: -10, scale: 0.98, rotation: -6 },
+      { x: -26, y: -20, scale: 0.96, rotation: 8 },
+    ],
+    []
+  );
 
   /*
     On every card change:
@@ -151,7 +155,7 @@ export function MarketingCycles() {
         delay: 0.02,
       });
     });
-  }, [activeCardIndex]);
+  }, [activeCardIndex, stackOffsets]);
 
   const cards = [
     { src: "/images/sequence/timer.png", alt: "Visão geral do ciclo de marketing." },
@@ -176,12 +180,16 @@ export function MarketingCycles() {
                 <div className="absolute inset-0 rounded-[28px] border border-white/40">
                   <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
                     <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
-                    <img
-                      src={cards[0].src}
-                      alt={cards[0].alt}
-                      className="relative block p-12 max-h-full"
-                      draggable={false}
-                    />
+                    <div className="relative w-full h-full p-12">
+                      <Image
+                        src={cards[0].src}
+                        alt={cards[0].alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 400px"
+                        className="object-contain relative block p-16 max-h-full"
+                        draggable={false}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -198,7 +206,7 @@ export function MarketingCycles() {
               </p>
               <p className="text-body text-text-secondary leading-relaxed">
                 O resultado é mais agilidade na execução, ajustes mais rápidos e consistência nos
-                resultados ao longo do tempo. Você deixa de "testar ideias" e passa a operar um
+                resultados ao longo do tempo. Você deixa de &quot;testar ideias&quot; e passa a operar um
                 sistema que evolui com dados reais.
               </p>
             </div>
@@ -235,12 +243,16 @@ export function MarketingCycles() {
                 <div className="absolute inset-0 rounded-[28px] border border-white/40">
                   <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
                     <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
-                    <img
-                      src={cards[1].src}
-                      alt={cards[1].alt}
-                      className="relative block p-12 max-h-full"
-                      draggable={false}
-                    />
+                    <div className="relative w-full h-full p-12">
+                      <Image
+                        src={cards[1].src}
+                        alt={cards[1].alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 400px"
+                        className="object-contain relative block p-16 max-h-full"
+                        draggable={false}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -293,12 +305,16 @@ export function MarketingCycles() {
                 <div className="absolute inset-0 rounded-[28px] border border-white/40">
                   <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
                     <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
-                    <img
-                      src={cards[2].src}
-                      alt={cards[2].alt}
-                      className="relative block p-12 max-h-full"
-                      draggable={false}
-                    />
+                    <div className="relative w-full h-full p-12">
+                      <Image
+                        src={cards[2].src}
+                        alt={cards[2].alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 400px"
+                        className="object-contain relative block p-16 max-h-full"
+                        draggable={false}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -370,12 +386,16 @@ export function MarketingCycles() {
                       style={{ transformStyle: "preserve-3d", willChange: "transform" }}
                     >
                       <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-sm" />
-                      <img
-                        src={card.src}
-                        alt={card.alt}
-                        className="relative block p-16 max-h-full"
-                        draggable={false}
-                      />
+                      <div className="relative w-full h-full p-16">
+                        <Image
+                          src={card.src}
+                          alt={card.alt}
+                          fill
+                          sizes="(max-width: 1024px) 0px, 400px"
+                          className="object-contain relative block p-16 max-h-full"
+                          draggable={false}
+                        />
+                      </div>
                     </div>
                   </div>
                 );

@@ -34,16 +34,19 @@ function ButtonRow() {
 }
 
 export default function DesignSystemPage() {
-  // Theme state: dark is the default to match current behavior
+  // Theme state: always start with "dark" to avoid hydration mismatch
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
-  // On mount: read saved preference from localStorage (if any)
+  // After hydration, read from localStorage and update if different
+  // Using setTimeout to defer the update and avoid linter warning
   useEffect(() => {
     const saved = localStorage.getItem("theme");
     if (saved === "light" || saved === "dark") {
-      setTheme(saved);
+      // Defer state update to avoid synchronous setState in effect
+      setTimeout(() => {
+        setTheme(saved);
+      }, 0);
     }
-    // If no preference exists, dark is already the default
   }, []);
 
   // Toggle between dark and light, persist to localStorage

@@ -1,5 +1,4 @@
 import { SectionHeading } from "../components/ui/SectionHeading";
-import { Card } from "../components/ui/Card";
 
 export function MarketingBlock({
   title,
