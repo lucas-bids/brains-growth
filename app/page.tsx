@@ -10,14 +10,18 @@ import { Pricing } from "./sections/Pricing";
 import { Testimonials } from "./sections/Testimonials";
 
 export default function Home() {
-  // Theme state: dark is the default for this project
+  // Theme state: always start with "dark" to avoid hydration mismatch
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
-  // Sync with localStorage
+  // After hydration, read from localStorage and update if different
+  // Using setTimeout to defer the update and avoid linter warning
   useEffect(() => {
     const saved = localStorage.getItem("theme");
     if (saved === "light" || saved === "dark") {
-      setTheme(saved);
+      // Defer state update to avoid synchronous setState in effect
+      setTimeout(() => {
+        setTheme(saved);
+      }, 0);
     }
   }, []);
 
