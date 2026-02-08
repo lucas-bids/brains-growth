@@ -177,9 +177,9 @@ export function MarketingCycles() {
           <div ref={setBlockRef(0)}>
             <div className="lg:hidden">
               <div className="relative mb-10 mx-auto aspect-[4/5] w-full max-w-md">
-                <div className="absolute inset-0 rounded-[28px] border border-white/40">
-                  <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
-                    <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
+                <div className="absolute inset-0 rounded-xl border border-border/40">
+                  <div className="relative flex h-full w-full items-center justify-center rounded-xl">
+                    <div className="absolute inset-0 rounded-xl bg-surface/40 backdrop-blur-md" />
                     <div className="relative w-full h-full p-12">
                       <Image
                         src={cards[0].src}
@@ -240,9 +240,9 @@ export function MarketingCycles() {
           <div ref={setBlockRef(1)}>
             <div className="lg:hidden">
               <div className="relative mx-auto mb-10 aspect-[4/5] w-full max-w-sm">
-                <div className="absolute inset-0 rounded-[28px] border border-white/40">
-                  <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
-                    <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
+                <div className="absolute inset-0 rounded-xl border border-border/40">
+                  <div className="relative flex h-full w-full items-center justify-center rounded-xl">
+                    <div className="absolute inset-0 rounded-xl bg-surface/40 backdrop-blur-md" />
                     <div className="relative w-full h-full p-12">
                       <Image
                         src={cards[1].src}
@@ -302,9 +302,9 @@ export function MarketingCycles() {
           <div ref={setBlockRef(2)}>
             <div className="lg:hidden">
               <div className="relative mx-auto mb-10 aspect-[4/5] w-full max-w-sm">
-                <div className="absolute inset-0 rounded-[28px] border border-white/40">
-                  <div className="relative flex h-full w-full items-center justify-center rounded-[28px]">
-                    <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-md" />
+                <div className="absolute inset-0 rounded-xl border border-border/40">
+                  <div className="relative flex h-full w-full items-center justify-center rounded-xl">
+                    <div className="absolute inset-0 rounded-xl bg-surface/40 backdrop-blur-md" />
                     <div className="relative w-full h-full p-12">
                       <Image
                         src={cards[2].src}
@@ -372,7 +372,7 @@ export function MarketingCycles() {
                   <div
                     key={card.src}
                     ref={setOuterCardRef(index)}
-                    className="absolute inset-0 rounded-[28px] border border-border transition-transform duration-500 ease-out"
+                    className="absolute inset-0 rounded-xl border border-border transition-transform duration-500 ease-out"
                     style={{
                       transform: `translate(${offset.x}px, ${offset.y}px) scale(${offset.scale}) rotate(${offset.rotation}deg)`,
                       zIndex: cards.length - index,
@@ -382,10 +382,10 @@ export function MarketingCycles() {
                   >
                     <div
                       ref={setCardRef(index)}
-                      className="relative flex h-full w-full items-center justify-center rounded-[28px]"
+                      className="relative flex h-full w-full items-center justify-center rounded-xl"
                       style={{ transformStyle: "preserve-3d", willChange: "transform" }}
                     >
-                      <div className="absolute inset-0 rounded-[28px] bg-surface/40 backdrop-blur-sm" />
+                      <div className="absolute inset-0 rounded-xl bg-surface/40 backdrop-blur-sm" />
                       <div className="relative w-full h-full p-16">
                         <Image
                           src={card.src}

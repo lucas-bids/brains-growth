@@ -13,7 +13,7 @@ const SUBTITLE = "Vamos conversar sobre o crescimento do seu negócio";
 const CTA_LABEL = "Fale com o Lucas";
 
 const primaryButtonBase =
-  "inline-flex items-center justify-center rounded-xl px-0 md:px-6 h-12 w-12 md:w-auto rounded-full text-sm font-semibold outline-none transition focus-visible:ring-2 bg-accent text-accent-foreground ring-offset-0 hover:brightness-95 focus-visible:ring-accent/40";
+  "inline-flex items-center justify-center rounded-full px-0 md:px-6 h-12 w-12 md:w-auto text-sm font-semibold outline-none transition focus-visible:ring-2 bg-accent text-accent-foreground ring-offset-0 hover:brightness-95 focus-visible:ring-accent/40";
 
 export function FloatingCTA() {
   const containerRef = useRef<HTMLDivElement>(null);

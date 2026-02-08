@@ -43,7 +43,7 @@ export function Button({
       <button
         type={type}
         onClick={onClick}
-        className={`${base} h-11 bg-accent-2 text-white ring-offset-0 hover:brightness-95 focus-visible:ring-accent-2/40 ${className}`}
+        className={`${base} h-11 bg-accent-2 text-text ring-offset-0 hover:brightness-95 focus-visible:ring-accent-2/40 ${className}`}
       >
         {children}
       </button>
