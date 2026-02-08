@@ -6,7 +6,7 @@ export function Badge({
   variant?: "featured" | "milestone";
 }) {
   const base =
-    "inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide";
+    "inline-flex items-center rounded-full px-2.5 py-1 text-small font-semibold tracking-wide";
 
   if (variant === "milestone") {
     return (

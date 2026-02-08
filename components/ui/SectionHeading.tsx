@@ -19,7 +19,7 @@ export function SectionHeading({
       }`}
     >
       <h2
-        className={`font-display text-3xl md:text-4xl text-text ${
+        className={`font-display text-h2 text-text ${
           isCentered ? "max-w-4xl mx-auto tracking-tight" : ""
         }`}
       >

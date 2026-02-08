@@ -33,6 +33,14 @@
   --ds-accent-2: #6a4cff; /* purple */
   --ds-accent-foreground: #0b0b0a;
 
+  /* Responsive type (h1 = text-4xl → md:text-6xl, h2 = text-3xl → md:text-4xl) */
+  --ds-text-h1: 2.25rem; /* text-4xl */
+  --ds-text-h1--line-height: 1.15;
+  --ds-text-h1--letter-spacing: -0.02em;
+  --ds-text-h2: 1.875rem; /* text-3xl */
+  --ds-text-h2--line-height: 1.18;
+  --ds-text-h2--letter-spacing: -0.015em;
+
   color-scheme: light;
 }
 
@@ -85,18 +93,18 @@
   --font-sans: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
   --font-display: var(--font-inter-tight, var(--font-inter, ui-sans-serif, system-ui, sans-serif));
 
-  /* Type scale */
+  /* Type scale (responsive h1/h2: --ds-text-h1/--ds-text-h2 on :root + media query) */
   --text-display: 2rem;
   --text-display--line-height: 1.1;
   --text-display--letter-spacing: -0.02em;
 
-  --text-h1: 1.8rem;
-  --text-h1--line-height: 1.15;
-  --text-h1--letter-spacing: -0.02em;
+  --text-h1: var(--ds-text-h1);
+  --text-h1--line-height: var(--ds-text-h1--line-height);
+  --text-h1--letter-spacing: var(--ds-text-h1--letter-spacing);
 
-  --text-h2: 1.4rem;
-  --text-h2--line-height: 1.18;
-  --text-h2--letter-spacing: -0.015em;
+  --text-h2: var(--ds-text-h2);
+  --text-h2--line-height: var(--ds-text-h2--line-height);
+  --text-h2--letter-spacing: var(--ds-text-h2--letter-spacing);
 
   --text-h3: 1.2rem;
   --text-h3--line-height: 1.3;
@@ -124,13 +132,13 @@
     --text-display--line-height: 1.03;
     --text-display--letter-spacing: -0.04em;
 
-    --text-h1: 3.25rem;
-    --text-h1--line-height: 1.08;
-    --text-h1--letter-spacing: -0.035em;
+    --ds-text-h1: 3.75rem; /* text-6xl */
+    --ds-text-h1--line-height: 1.08;
+    --ds-text-h1--letter-spacing: -0.035em;
 
-    --text-h2: 2.25rem;
-    --text-h2--line-height: 1.12;
-    --text-h2--letter-spacing: -0.02em;
+    --ds-text-h2: 2.25rem; /* text-4xl */
+    --ds-text-h2--line-height: 1.12;
+    --ds-text-h2--letter-spacing: -0.02em;
 
     --text-h3: 1.5rem;
     --text-h3--line-height: 1.25;
