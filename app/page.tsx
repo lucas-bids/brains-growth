@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Navbar } from "./components/Navbar";
-import { FloatingCTA } from "./components/FloatingCTA";
-import { SmoothScroll } from "./components/SmoothScroll";
-import { Hero } from "./sections/Hero";
-import { MarketingCycles } from "./sections/MarketingCycles";
-import { Pricing } from "./sections/Pricing";
-import { Testimonials } from "./sections/Testimonials";
+import { Navbar } from "@/components/Navbar";
+import { FloatingCTA } from "@/components/FloatingCTA";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { Hero } from "@/sections/Hero";
+import { MarketingCycles } from "@/sections/MarketingCycles";
+import { Pricing } from "@/sections/Pricing";
+import { Testimonials } from "@/sections/Testimonials";
 
 export default function Home() {
   // Theme state: always start with "dark" to avoid hydration mismatch

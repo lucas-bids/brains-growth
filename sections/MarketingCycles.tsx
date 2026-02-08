@@ -7,9 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { Zap, BarChart3, ScanEye, Target, Layers, Share2 } from "lucide-react";
 
-import { Card } from "../components/ui/Card";
-import { SectionHeading } from "../components/ui/SectionHeading";
-import { Pill } from "../components/ui/Pill";
+import { Card } from "@/components/ui/Card";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Pill } from "@/components/ui/Pill";
 import { MarketingBlock } from "./MarketingBlock";
 
 if (typeof window !== "undefined") {
@@ -331,7 +331,7 @@ export function MarketingCycles() {
               </p>
               <p>
                 Cada canal tem um papel claro dentro da estratégia, contribuindo para geração de
-                demanda e conversão — não apenas “marcando presença”.
+                demanda e conversão — não apenas &quot;marcando presença&quot;.
               </p>
               <div className="grid gap-4 sm:grid-cols-2">
                 <Card>

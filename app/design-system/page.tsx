@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { Inter, Inter_Tight } from "next/font/google";
-import { Navbar } from "../components/Navbar";
-import { SectionHeading } from "../components/ui/SectionHeading";
-import { Card } from "../components/ui/Card";
-import { Divider } from "../components/ui/Divider";
-import { Pill } from "../components/ui/Pill";
-import { Badge } from "../components/ui/Badge";
-import { Button } from "../components/ui/Button";
+import { Navbar } from "@/components/Navbar";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Card } from "@/components/ui/Card";
+import { Divider } from "@/components/ui/Divider";
+import { Pill } from "@/components/ui/Pill";
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
 import { Zap, BarChart3 } from "lucide-react";
 
 const inter = Inter({

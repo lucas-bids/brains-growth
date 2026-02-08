@@ -1,4 +1,4 @@
-import { SectionHeading } from "../components/ui/SectionHeading";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function MarketingBlock({
   title,
