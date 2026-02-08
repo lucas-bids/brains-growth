@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Ensure Turbopack resolves the correct workspace root.
+  // This prevents root inference from a parent lockfile which can break PostCSS/Tailwind.
+  turbopack: {
+    root: path.join(__dirname),
+  },
 };
 
 export default nextConfig;
