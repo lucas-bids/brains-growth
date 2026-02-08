@@ -1,11 +1,11 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { Card } from "../components/ui/Card";
-import { Pill } from "../components/ui/Pill";
-import { Button } from "../components/ui/Button";
-import { SectionHeading } from "../components/ui/SectionHeading";
-import { Divider } from "../components/ui/Divider";
+import { Card } from "@/components/ui/Card";
+import { Pill } from "@/components/ui/Pill";
+import { Button } from "@/components/ui/Button";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Divider } from "@/components/ui/Divider";
 
 type PillTone = "neutral" | "accent" | "accent2";
 

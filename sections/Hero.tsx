@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { HeroCarousel } from "../components/HeroCarousel";
-import { Pill } from "../components/ui/Pill";
-import { Button } from "../components/ui/Button";
+import { HeroCarousel } from "@/components/HeroCarousel";
+import { Pill } from "@/components/ui/Pill";
+import { Button } from "@/components/ui/Button";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);

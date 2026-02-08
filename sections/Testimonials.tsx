@@ -1,8 +1,8 @@
 "use client";
 
-import { SectionHeading } from "../components/ui/SectionHeading";
-import { TestimonialsCarousel } from "../components/TestimonialsCarousel";
-import { Pill } from "../components/ui/Pill";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
+import { Pill } from "@/components/ui/Pill";
 
 type TestimonialSource = "google" | "woba";
 
