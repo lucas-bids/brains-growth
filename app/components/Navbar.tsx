@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, type MouseEvent as ReactMouseEvent } from 
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { Moon, Sun } from "lucide-react";
 import { Divider } from "./ui/Divider";
 
 interface NavbarProps {
@@ -81,39 +82,9 @@ export function Navbar({ theme, toggleTheme }: NavbarProps) {
 
   const themeIcon =
     theme === "dark" ? (
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-4 w-4"
-      >
-        <circle cx="12" cy="12" r="4" />
-        <line x1="12" y1="2" x2="12" y2="5" />
-        <line x1="12" y1="19" x2="12" y2="22" />
-        <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
-        <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
-        <line x1="2" y1="12" x2="5" y2="12" />
-        <line x1="19" y1="12" x2="22" y2="12" />
-        <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
-        <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
-      </svg>
+      <Sun aria-hidden="true" className="h-4 w-4" />
     ) : (
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-4 w-4"
-      >
-        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
-      </svg>
+      <Moon aria-hidden="true" className="h-4 w-4" />
     );
 
   return (
@@ -155,46 +126,56 @@ export function Navbar({ theme, toggleTheme }: NavbarProps) {
               type="button"
               onClick={toggleTheme}
               aria-label="Alternar tema"
-              className="rounded-full bg-surface-2 px-3 py-1.5 text-sm font-medium text-text-secondary transition hover:text-text"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-2 text-text-secondary transition"
             >
               {themeIcon}
             </button>
           </div>
 
-          {/* Mobile hamburger button (visible only on mobile) */}
-          <button
-            type="button"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="mobile-menu"
-            aria-label="Toggle navigation menu"
-            className="flex items-center justify-center rounded-full p-2 text-text-secondary transition hover:text-text md:hidden"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label="Alternar tema"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-2 text-text-secondary transition"
             >
-              {isMobileMenuOpen ? (
-                <>
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </>
-              ) : (
-                <>
-                  <line x1="3" y1="12" x2="21" y2="12" />
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <line x1="3" y1="18" x2="21" y2="18" />
-                </>
-              )}
-            </svg>
-          </button>
+              {themeIcon}
+            </button>
+            {/* Mobile hamburger button (visible only on mobile) */}
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label="Toggle navigation menu"
+              className="flex items-center justify-center rounded-full p-2 text-text-secondary transition hover:text-text"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-6 w-6"
+              >
+                {isMobileMenuOpen ? (
+                  <>
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </>
+                ) : (
+                  <>
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                  </>
+                )}
+              </svg>
+            </button>
+          </div>
         </nav>
 
         {/* Mobile dropdown menu */}
@@ -221,18 +202,6 @@ export function Navbar({ theme, toggleTheme }: NavbarProps) {
                   )}
                 </div>
               ))}
-              <Divider className="my-1" />
-              <button
-                type="button"
-                onClick={() => {
-                  toggleTheme();
-                  setIsMobileMenuOpen(false);
-                }}
-                aria-label="Alternar tema"
-                className="w-full rounded-full bg-surface-2 px-3 py-2 text-left text-sm font-medium text-text-secondary transition hover:text-text"
-              >
-                {themeIcon}
-              </button>
             </nav>
           </div>
         )}
