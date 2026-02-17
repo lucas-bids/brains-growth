@@ -8,6 +8,7 @@ import { Hero } from "@/sections/Hero";
 import { MarketingCycles } from "@/sections/MarketingCycles";
 import { Pricing } from "@/sections/Pricing";
 import { Testimonials } from "@/sections/Testimonials";
+import { FAQ } from "@/sections/FAQ";
 
 export default function Home() {
   // Theme state: always start with "dark" to avoid hydration mismatch
@@ -43,6 +44,7 @@ export default function Home() {
           <MarketingCycles />
           <Testimonials />
           <Pricing />
+          <FAQ />
         </main>
         
         <div
