@@ -183,3 +183,4 @@ vite.config.ts.timestamp-*
 # Other files
 app/components/ui/all-components.tsx
 
+.npm-cache/
