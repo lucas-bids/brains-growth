@@ -8,7 +8,7 @@ The goal was not only to build a visually polished website, but to create a clea
 
 **Live project:** https://brains-growth.netlify.app
 
-![Brains Growth preview](https://media.giphy.com/media/rh5ZHXQHUBcSTB4HTz/giphy.gif)
+![Brains Growth preview](./brains-growth-prev.gif)
 
 ## Project scope
 
