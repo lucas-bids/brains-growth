@@ -1,117 +1,243 @@
 # Brains Growth
 
-A conversion-focused landing page and front-end system for **Brains Growth**, a marketing consultancy positioned around clarity, performance, and data-driven decision-making.
+A conversion-focused landing page designed and developed for **Brains Growth**, a marketing consultancy positioned around clarity, performance, and data-driven decision-making.
 
-This project was designed as a **communication system**: identify the trust gap, simplify the value proposition, build a reusable visual language, and turn that into a landing experience that feels premium, credible, and actionable.
+This was a real client project. I handled the full process: research, positioning, copywriting, client communication, UI direction, front-end development, deployment, and final delivery.
 
-## Reasoning
+The goal was not only to build a visually polished website, but to create a clear communication system that helps potential clients understand the offer, trust the business, and take action.
 
-Many service businesses know what they do well, and struggle to explain it online in a way that feels:
+**Live project:** https://brains-growth.netlify.app
 
-- clear to first-time visitors
-- trustworthy enough to reduce hesitation
-- structured enough to guide people toward contact
+![Brains Growth preview](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHlkdmV1OTVmajBzNHZodHNkeWdsdHZmYmp4bnhmYjc2enRnaDZvdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rh5ZHXQHUBcSTB4HTz/giphy.gif)
 
-For Brains Growth:
+## Project scope
 
-**How do we present a data-driven marketing service in a way that feels human, premium, and easy to understand, without overwhelming the user with jargon?**
+For this project, I was responsible for the complete landing page process:
 
-That question shaped the process.
+- Client discovery and project direction
+- Market and positioning research
+- Landing page structure
+- Copywriting and messaging
+- Visual direction and UI decisions
+- Front-end development
+- Responsive implementation
+- Animation and interaction details
+- Deployment to Netlify
+- Client communication and iteration
 
-## My Approach
+This project reflects how I approach client work: product thinking, communication strategy, design judgment, and technical execution.
 
-I treated this as a small product design exercise rather than a pure front-end build.
+## Why I built this
 
-### 1. Problem Identification
+Many service businesses know what they do well, but struggle to explain it online in a way that feels clear, trustworthy, and easy to act on.
 
-The page needed to solve four communication problems quickly:
+For Brains Growth, the challenge was:
 
-- explain the offer in simple language
-- create trust early
-- show that the service has a real method
-- keep the path to contact visible throughout the experience
+> How do we present a data-driven marketing service in a way that feels human, premium, and easy to understand, without overwhelming the user with jargon?
 
-### 2. Design Thinking
+The final landing page was built around that challenge. The content, layout, visual hierarchy, and interactions were designed to reduce friction and guide visitors through the business value proposition.
 
-From there, the page structure was organized around progressive clarity:
+## What the project does
 
-- **Hero:** communicate the main promise immediately
-- **Method section:** show that the work happens through systems and cycles
-- **Social proof:** reduce risk perception
-- **Pricing:** make the offer concrete
-- **FAQ:** remove the most common objections
-- **Persistent CTA:** keep conversion available without being aggressive
+Brains Growth is a marketing landing page built to communicate a clear offer, guide users through the value proposition, and support conversion.
 
-The goal was to make the experience feel like a guided conversation: first understanding, then credibility, then action.
+The page includes:
 
-### 3. Design System First
+- Hero section with clear positioning
+- Floating navigation
+- Theme toggle with light and dark modes
+- Smooth scrolling behavior
+- Marketing-cycle explanation section
+- Pricing section
+- Testimonials section
+- FAQ section
+- Floating CTA interaction
+- Responsive layout
+- Reusable component structure
+- Design direction focused on trust, clarity, and premium presentation
 
-Instead of styling section by section, I created a reusable visual foundation and documented it in a dedicated [`/design-system`](/Users/lucasvidal/Documents/Projects/brains-growth/app/design-system/page.tsx) page.
+## Tech stack
 
-That system includes:
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- GSAP
+- Lucide React
+- ESLint
+- Prettier
+- Netlify
 
-- semantic color tokens via CSS variables
-- dark/light theming
-- typography hierarchy for editorial-style marketing layouts
-- consistent spacing and surface treatment
-- reusable UI primitives such as buttons, pills, cards, dividers, and section headings
+## Product and design thinking
 
-This made the page easier to scale, easier to keep consistent, and easier to reason about as a product rather than a collection of components.
+This project was not treated as a generic landing page. The focus was to design a page that works as a sales narrative.
 
-## The Final Page
+The structure was planned around questions a potential client would likely have:
 
-The final landing page combines brand expression, motion, and conversion structure:
+- What does this company do?
+- Why should I trust them?
+- What problem are they solving?
+- How is their process different?
+- What kind of results or expertise can I expect?
+- What should I do next?
 
-- a strong headline with a direct value proposition
-- a looping media carousel to give the hero more energy and context
-- a scroll-driven "marketing cycles" section that visually reinforces process and system thinking
-- testimonials and trust-building content
-- pricing cards that make the service ladder easy to compare
-- an FAQ that handles objections in a lightweight way
-- a floating WhatsApp CTA that stays available and expands near the end of the page
+The interface uses a clean visual system, controlled spacing, dark/light mode support, focused messaging, and clear section hierarchy to reduce friction and make the offer easier to understand.
 
-There is also thoughtful motion throughout the experience using GSAP, not as decoration, but to support hierarchy, rhythm, and attention.
+## Technical highlights
 
-## Tech Stack
+The application uses the Next.js App Router with a component-based structure. Page sections are separated into reusable modules, making the landing page easier to maintain and extend.
 
-- **Next.js 16**
-- **React 19**
-- **TypeScript**
-- **Tailwind CSS v4**
-- **GSAP** for motion and scroll interactions
+Theme state is handled client-side and persisted with `localStorage`, allowing users to switch between dark and light modes.
 
-## Project Structure
+GSAP is included for interaction and animation work, supporting a more polished presentation without relying on heavy UI libraries.
 
-```text
+The project also follows practical front-end conventions:
+
+- Typed React components
+- Tailwind-first styling
+- Reusable UI and section components
+- Prettier formatting
+- ESLint linting
+- Clear file organization
+- Minimal unnecessary state management
+- Deployment-ready production build
+
+## What this project demonstrates
+
+This project demonstrates skills that are useful in front-end, product, and client-facing development roles:
+
+- Managing a real client website project from discovery to deployment
+- Translating business goals into a clear landing page structure
+- Writing conversion-focused copy for a service business
+- Building polished landing pages with Next.js and TypeScript
+- Structuring a page around trust, clarity, and conversion
+- Creating reusable front-end components
+- Working with modern styling through Tailwind CSS
+- Implementing light and dark mode behavior
+- Using animation to support the experience without overwhelming the content
+- Combining development, design, copywriting, and client management in one project
+
+## Getting started
+
+Clone the repository:
+
+```bash
+git clone https://github.com/lucas-bids/brains-growth.git
+cd brains-growth
+````
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Then open:
+
+```bash
+http://localhost:3000
+```
+
+## Available scripts
+
+Run the local development server:
+
+```bash
+npm run dev
+```
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Start the production server:
+
+```bash
+npm start
+```
+
+Run linting:
+
+```bash
+npm run lint
+```
+
+Format the codebase:
+
+```bash
+npm run format
+```
+
+Check formatting:
+
+```bash
+npm run format:check
+```
+
+## Project structure
+
+```bash
 app/
-  page.tsx                 # Main landing page
-  design-system/page.tsx   # Visual system reference
-  globals.css              # Design tokens and theme foundations
+  page.tsx
+  layout.tsx
+  globals.css
 
 components/
-  ui/                      # Reusable primitives
   Navbar.tsx
   FloatingCTA.tsx
-  HeroCarousel.tsx
+  SmoothScroll.tsx
 
 sections/
   Hero.tsx
   MarketingCycles.tsx
-  Testimonials.tsx
   Pricing.tsx
+  Testimonials.tsx
   FAQ.tsx
+
+public/
+  images/
 ```
 
-## Running Locally
+Key files and folders:
 
-```bash
-npm install
-npm run dev
+* `app/page.tsx` defines the main landing page composition.
+* `components/` contains reusable interface and behavior components.
+* `sections/` contains the main landing page sections.
+* `public/images/` stores visual assets used by the page.
+* `app/globals.css` contains global styling and Tailwind setup.
+
+## Status
+
+This is a completed client landing page project.
+
+It represents my ability to take a website from early direction to live deployment, covering technical implementation ans also the research, copy, communication, and product decisions behind the final page.
+
+## Future improvements
+
+Potential next steps for this project:
+
+* Connect dynamic content to a headless CMS
+* Add case study pages
+* Add analytics and conversion tracking
+* Add form submission handling
+* Add A/B testing for CTA and pricing copy
+* Improve accessibility testing
+* Add automated UI checks
+* Expand the design system documentation
+
+## About
+
+Brains Growth is a client landing page built to show how a marketing consultancy can present a complex service in a clearer, more credible, and more conversion-focused way.
+
+It reflects my interest in building websites that are not only visually polished, but also strategically useful, commercially grounded, and ready for real users.
+
 ```
-
-Then open [http://localhost:3000](http://localhost:3000).
-
-## Notes
-
-- The interface copy is in **Portuguese** because the target audience is Brazilian.
-- The README is in **English** because this repository is also intended to function as a portfolio case study for recruiters and collaborators.
+```
